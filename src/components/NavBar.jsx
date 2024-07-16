@@ -12,16 +12,28 @@ export default function NavBar() {
       </div>
 
       <div className="flex-none">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="menu menu-horizontal px-1 ">
           <li className="hidden md:inline-block">
-            <Link href="/" className="text-text">
+            <Link href="/Home" className="text-text">
               Home
             </Link>
           </li>
 
           <li className="hidden md:inline-block">
-            <Link href="/Dashboard" className="text-text">
-              Dashboard
+            <Link href="/" className="text-text">
+              Quests
+            </Link>
+          </li>
+
+          <li className="hidden md:inline-block">
+            <Link href="/" className="text-text">
+              Timeline
+            </Link>
+          </li>
+
+          <li className="hidden md:inline-block">
+            <Link href="/" className="text-text">
+              Profile
             </Link>
           </li>
 
@@ -31,14 +43,26 @@ export default function NavBar() {
 
               <ul className="p-2 bg-base-100 rounded-t-none text-text">
                 <li>
-                  <Link href="/Dashboard" className="text-text">
-                    Dashboard
+                  <Link href="/Home" className="text-text">
+                    Home
                   </Link>
                 </li>
 
                 <li>
                   <Link href="/" className="text-text">
-                    Home
+                    Quests
+                  </Link>
+                </li>
+
+                <li>
+                  <Link href="/" className="text-text">
+                    Timeline
+                  </Link>
+                </li>
+
+                <li>
+                  <Link href="/" className="text-text">
+                    Profile
                   </Link>
                 </li>
               </ul>
