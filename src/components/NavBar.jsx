@@ -6,13 +6,13 @@ import Link from "next/link";
 
 export default function NavBar() {
   return (
-    <div className="navbar bg-background fixed text-text">
+    <div className="navbar bg-background text-text z-50">
       <div className="flex-1">
         <a className="btn btn-ghost text-xl">daisyUI</a>
       </div>
 
       <div className="flex-none">
-        <ul className="menu menu-horizontal px-1 ">
+        <ul className="menu menu-horizontal px-1">
           <li className="hidden md:inline-block">
             <Link href="/" className="text-text">
               Home
@@ -20,7 +20,7 @@ export default function NavBar() {
           </li>
 
           <li className="hidden md:inline-block">
-            <Link href="/" className="text-text">
+            <Link href="/Bounty" className="text-text">
               Bounty
             </Link>
           </li>
@@ -49,7 +49,7 @@ export default function NavBar() {
                 </li>
 
                 <li>
-                  <Link href="/" className="text-text">
+                  <Link href="/Bounty" className="text-text">
                     Bounty
                   </Link>
                 </li>
