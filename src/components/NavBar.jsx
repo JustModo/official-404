@@ -14,14 +14,14 @@ export default function NavBar() {
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1 ">
           <li className="hidden md:inline-block">
-            <Link href="/Home" className="text-text">
+            <Link href="/" className="text-text">
               Home
             </Link>
           </li>
 
           <li className="hidden md:inline-block">
             <Link href="/" className="text-text">
-              Quests
+              Bounty
             </Link>
           </li>
 
@@ -43,14 +43,14 @@ export default function NavBar() {
 
               <ul className="p-2 bg-base-100 rounded-t-none text-text">
                 <li>
-                  <Link href="/Home" className="text-text">
+                  <Link href="/" className="text-text">
                     Home
                   </Link>
                 </li>
 
                 <li>
                   <Link href="/" className="text-text">
-                    Quests
+                    Bounty
                   </Link>
                 </li>
 
