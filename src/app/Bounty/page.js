@@ -1,61 +1,29 @@
 "use client";
-import React from "react";
+import React, { useRef, useState } from "react";
+import useBountyHook from "../../components/BountyHook";
 
 export default function Bounty() {
+  const { data, loading } = useBountyHook();
+
   return (
-    <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 mx-4">
-      <div
-        className="bg-blue-200 p-4 h-48 avbr"
-        style={{ breakInside: "avoid" }}
-      >
-        Content 1
-      </div>
-      <div className="bg-blue-200 p-4  h-64 my-4 avbr">Content 2</div>
-      <div className="bg-blue-200 p-4 h-48 my-4 avbr">
-        Content 3 with different height
-      </div>
-      <div className="bg-blue-200 p-4 h-32 my-4 avbr">Content 4</div>
-      <div className="bg-blue-200 p-4 h-64 my-4 avbr">
-        Content 5 with different height
-      </div>
-      <div className="bg-blue-200 p-4 h-72 my-4 avbr">Content 6</div>
-      <div className="bg-blue-200 p-4  h-64 my-4 avbr">Content 7</div>
-      <div className="bg-blue-200 p-4 h-32 my-4 avbr">
-        Content 8 with different height
-      </div>
-      <div className="bg-blue-200 p-4 h-48 my-4 avbr">Content 9</div>
-      <div className="bg-blue-200 p-4 h-32 my-4 avbr">Content 10</div>
-      <div className="bg-blue-200 p-4 h-48 my-4 avbr">
-        Content 11 with different height
-      </div>
-      <div className="bg-blue-200 p-4 h-48 my-4 avbr">Content 12</div>
-      <div className="bg-blue-200 p-4 h-32 my-4 avbr">Content 4</div>
-      <div className="bg-blue-200 p-4 h-64 my-4 avbr">
-        Content 5 with different height
-      </div>
-      <div className="bg-blue-200 p-4 h-72 my-4 avbr">Content 6</div>
-      <div className="bg-blue-200 p-4  h-64 my-4 avbr">Content 7</div>
-      <div className="bg-blue-200 p-4 h-32 my-4 avbr">
-        Content 8 with different height
-      </div>
-      <div className="bg-blue-200 p-4 h-48 my-4 avbr">Content 9</div>
-      <div className="bg-blue-200 p-4 h-32 my-4 avbr">Content 10</div>
-      <div className="bg-blue-200 p-4 h-32 my-4 avbr">Content 4</div>
-      <div className="bg-blue-200 p-4 h-64 my-4 avbr">
-        Content 5 with different height
-      </div>
-      <div className="bg-blue-200 p-4 h-72 my-4 avbr">Content 6</div>
-      <div className="bg-blue-200 p-4  h-64 my-4 avbr">Content 7</div>
-      <div className="bg-blue-200 p-4 h-32 my-4 avbr">
-        Content 8 with different height
-      </div>
-      <div className="bg-blue-200 p-4 h-48 my-4 avbr">Content 9</div>
-      <div className="bg-blue-200 p-4 h-32 my-4 avbr">Content 10</div>
-      <div className="bg-blue-200 p-4 h-48 my-4 avbr">
-        Content 11 with different height
-      </div>
-      <div className="bg-blue-200 p-4 h-48 my-4 avbr">Content 12</div>
-      <div className="bg-blue-200 p-4 h-32 my-4 avbr">Content 4</div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 m-4">
+      {data.map((item, index) => (
+        <div
+          key={index}
+          className="min-h-72 sm:min-h-96 md:min-h-96 break-inside-avoid flex items-end bg-slate-800 rounded-xl overflow-hidden"
+        >
+          <div className="bg-black h-5/6 w-full relative">
+            <div
+              className="absolute left-2 rounded-full w-24 h-24 bg-purple-600"
+              style={{ top: "-3rem" }}
+            />
+            <label className="absolute top-2 left-28 text-xl font-semibold">@Modo</label>
+            <label>Sum of first 20 prime numbers using loop</label>
+            <div>Tag1</div>
+            <div>Lang</div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

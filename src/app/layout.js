@@ -12,7 +12,10 @@ export default function RootLayout({ children }) {
       <body>
         <div className="flex flex-col w-screen h-screen relative overflow-hidden">
           <NavBar />
-          <div className="relative w-full h-full overflow-y-auto snap-y snap-proximity">
+          <div
+            id="mainwindow"
+            className="relative w-full h-full overflow-y-auto"
+          >
             {children}
           </div>
         </div>
