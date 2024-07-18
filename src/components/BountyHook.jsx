@@ -41,7 +41,11 @@ export default function BountyHook() {
     const handleScroll = () => {
       if (main.scrollTop + main.clientHeight >= main.scrollHeight - 2) {
         console.log("End of Page");
-        loadMore();
+        setLoading(true);
+        const timer = setTimeout(() => {
+          loadMore();
+        }, 3000);
+        return () => clearTimeout(timer);
       }
     };
 
