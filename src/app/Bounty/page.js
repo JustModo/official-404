@@ -20,7 +20,7 @@ export default function Bounty() {
   };
   const DATA3 = {
     title:
-      " dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam, quis nostrud exercitation ullamco laboris nisi utali",
+      " What is Life ?",
     content:
       "Lorem ips um dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex  ",
   };
@@ -31,13 +31,13 @@ export default function Bounty() {
       <Masonry
         columns={{ xl: 4, md: 3, sm: 2, xs: 1 }}
         spacing={2}
-        className="m-0"
+        className="m-1"
       >
         {data.map((item, index) => (
           <>
-            <BountyCard index={index} data={DATA1} />
-            <BountyCard index={index} data={DATA2} />
-            <BountyCard index={index} data={DATA3} />
+            <BountyCard index={ index } data={DATA1} />
+            <BountyCard index={ index } data={DATA2} />
+            <BountyCard index={ index } data={DATA3} />
           </>
         ))}
       </Masonry>
