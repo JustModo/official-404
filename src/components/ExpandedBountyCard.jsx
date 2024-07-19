@@ -6,13 +6,13 @@ export default function ExpandedBountyCard({ index, data, onClick, layoutId }) {
     <motion.div
       key={index}
       layoutId={layoutId}
-      className={`flex items-center overflow-hidden`}
+      className={`flex items-center justify-center overflow-hidden h-full`}
       style={{ userSelect: "none" }}
       onClick={onClick}
       layout
     >
       <motion.div
-        className="bg-black w-full h-4/5 relative py-6 px-4 rounded-xl"
+        className="bg-black w-11/12 md:w-4/5 h-4/5 relative py-6 px-4 rounded-xl"
         layout
       >
         <motion.h1 layout>Rating:{index}</motion.h1>
@@ -32,7 +32,7 @@ export default function ExpandedBountyCard({ index, data, onClick, layoutId }) {
           </motion.div>
         </motion.div>
         <motion.p
-          className="text-base line-clamp-3 text-justify mt-2"
+          className="text-base text-justify mt-2"
           style={{ lineHeight: "1.4rem" }}
         >
           {data?.content}
