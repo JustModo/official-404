@@ -88,5 +88,9 @@ export default function BountyHook() {
     return () => main.removeEventListener("scroll", handleScroll);
   }, [loading]);
 
-  return { data, loading };
+  function temp() {
+    loadMore();
+  }
+
+  return { data, loading, temp };
 }

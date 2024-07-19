@@ -1,10 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-export default function BountyCard({ index, data, onClick, layoutId }) {
+export default function BountyCard({ data, onClick, layoutId, index }) {
   return (
     <motion.div
-      key={index}
       layoutId={layoutId}
       className={`flex items-center overflow-hidden h-full`}
       style={{ userSelect: "none" }}
@@ -15,7 +14,7 @@ export default function BountyCard({ index, data, onClick, layoutId }) {
         className="bg-black w-full relative py-6 px-4 rounded-xl"
         layout
       >
-        <motion.h1 layout>Rating:{index}</motion.h1>
+        <motion.h1 layout>Rating:{data?.id}</motion.h1>
         <motion.h1
           className="text-xl font-bold mt-2"
           style={{ lineHeight: "1.6rem" }}

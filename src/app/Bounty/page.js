@@ -1,13 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import useBountyHook from "../../components/BountyHook";
+import MasoneryGrid from "../../components/MasoneryGrid";
 import BountyCard from "../../components/BountyCard";
 import ExpandedBountyCard from "../../components/ExpandedBountyCard";
-import { Masonry } from "@mui/lab";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function Bounty() {
-  const { data, loading } = useBountyHook();
+  const { data, loading, temp } = useBountyHook();
 
   const DATA1 = {
     title:
@@ -20,25 +20,26 @@ export default function Bounty() {
 
   return (
     <div className="w-full pb-20 flex flex-col items-center">
-      <Masonry
-        columns={{ xl: 4, md: 3, sm: 2, xs: 1 }}
-        spacing={2}
-        className="m-0"
-        key={data.length}
-      >
-        {data.map((item, index) => (
-          <motion.div className="bg-opacity-0 flex" key={item.id}>
-            <BountyCard
-              index={item.id}
-              data={item}
-              layoutId={`item-${item.id}`}
-              onClick={() => setSelectedId(item.id)}
-            />
-          </motion.div>
-        ))}
-      </Masonry>
-      {loading && <div className="text-xl font-bold">Loading....</div>}
       <AnimatePresence>
+        <MasoneryGrid>
+          {data.map((item, index) => (
+            <motion.div className="bg-opacity-0 flex" key={item.id}>
+              <BountyCard
+                index={index}
+                data={item}
+                layoutId={`item-${item.id}`}
+                onClick={() => setSelectedId(item.id)}
+              />
+            </motion.div>
+          ))}
+        </MasoneryGrid>
+        <div
+          className="fixed bottom-0 right-0 btn bg-pink-600"
+          onClick={() => temp()}
+        >
+          P
+        </div>
+        {loading && <div className="text-xl font-bold">Loading....</div>}
         {selectedId !== null && (
           <motion.div
             className="fixed top-0 left-0 w-full h-full bg-opacity-50 flex z-30 justify-center items-center bg-black"
