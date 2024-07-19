@@ -18,7 +18,7 @@ export default function ExpandedBountyCard({ index, data, onClick, layoutId }) {
         <motion.h1 layout>Rating:{index}</motion.h1>
         <motion.h1
           className="text-xl font-bold mt-2"
-          style={{ lineHeight: "1.25rem" }}
+          style={{ lineHeight: "1.6rem" }}
           layout
         >
           {data?.title}
@@ -27,14 +27,13 @@ export default function ExpandedBountyCard({ index, data, onClick, layoutId }) {
           className="flex flex-row w-full justify-start items-center mt-2"
           layout
         >
-          <motion.div className="rounded-2xl px-3 bg-red-600 text-sm font-bold">
+          <motion.div className="rounded-2xl w-auto h-auto bg-pink-900 text-sm font-bold items-center justify-center flex px-4 py-1.5">
             DSA
           </motion.div>
         </motion.div>
         <motion.p
           className="text-base line-clamp-3 text-justify mt-2"
-          style={{ lineHeight: "1.125rem" }}
-          layout
+          style={{ lineHeight: "1.4rem" }}
         >
           {data?.content}
         </motion.p>
@@ -43,10 +42,34 @@ export default function ExpandedBountyCard({ index, data, onClick, layoutId }) {
           layout
         >
           <motion.div
-            className="rounded-full w-10 h-10 bg-red-600 text-sm font-bold items-center justify-center flex flex-shrink-0"
+            className="rounded-2xl w-auto h-auto bg-blue-800 text-sm font-bold items-center justify-center flex px-4 py-1.5"
             layout
           >
-            Java
+            Data Science
+          </motion.div>
+          <motion.div
+            className="rounded-2xl w-auto h-auto bg-blue-800 text-sm font-bold items-center justify-center flex px-4 py-1.5"
+            layout
+          >
+            C
+          </motion.div>
+          <motion.div
+            className="rounded-2xl w-auto h-auto bg-blue-800 text-sm font-bold items-center justify-center flex px-4 py-1.5"
+            layout
+          >
+            Linux
+          </motion.div>
+          <motion.div
+            className="rounded-2xl w-auto h-auto bg-blue-800 text-sm font-bold items-center justify-center flex px-4 py-1.5"
+            layout
+          >
+            Python
+          </motion.div>
+          <motion.div
+            className="rounded-2xl w-auto h-auto bg-blue-800 text-sm font-bold items-center justify-center flex px-4 py-1.5"
+            layout
+          >
+            Ransomware
           </motion.div>
         </motion.div>
       </motion.div>

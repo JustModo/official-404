@@ -6,7 +6,7 @@ export default function BountyCard({ index, data, onClick, layoutId }) {
     <motion.div
       key={index}
       layoutId={layoutId}
-      className={`flex flex-col overflow-hidden transform transition-transform duration-300 hover:scale-105`}
+      className={`flex items-center overflow-hidden`}
       style={{ userSelect: "none" }}
       onClick={onClick}
       layout
@@ -26,7 +26,7 @@ export default function BountyCard({ index, data, onClick, layoutId }) {
           className="flex flex-row w-full justify-start items-center mt-2"
           layout
         >
-          <motion.div className="rounded-2xl px-3 w-auto h-auto bg-pink-900 text-sm font-bold items-center justify-center flex px-4 py-1.5">
+          <motion.div className="rounded-2xl w-auto h-auto bg-pink-900 text-sm font-bold items-center justify-center flex px-4 py-1.5">
             DSA
           </motion.div>
         </motion.div>
@@ -56,19 +56,19 @@ export default function BountyCard({ index, data, onClick, layoutId }) {
             className="rounded-2xl w-auto h-auto bg-blue-800 text-sm font-bold items-center justify-center flex px-4 py-1.5"
             layout
           >
-             Linux
+            Linux
           </motion.div>
           <motion.div
             className="rounded-2xl w-auto h-auto bg-blue-800 text-sm font-bold items-center justify-center flex px-4 py-1.5"
             layout
           >
-             Python
+            Python
           </motion.div>
           <motion.div
             className="rounded-2xl w-auto h-auto bg-blue-800 text-sm font-bold items-center justify-center flex px-4 py-1.5"
             layout
           >
-              Ransomware
+            Ransomware
           </motion.div>
         </motion.div>
       </motion.div>
