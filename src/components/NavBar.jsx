@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function NavBar() {
   return (
-    <div className="navbar bg-background text-text z-50">
+    <div className="navbar bg-background text-text z-20">
       <div className="flex-1">
         <a className="btn btn-ghost text-xl">daisyUI</a>
       </div>

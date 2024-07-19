@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 
-export default function BountyCard({ index, data, onClick, layoutId }) {
+export default function ExpandedBountyCard({ index, data, onClick, layoutId }) {
   return (
     <motion.div
       key={index}
       layoutId={layoutId}
-      className={`flex overflow-hidden`}
+      className={`flex items-center overflow-hidden`}
       style={{ userSelect: "none" }}
       onClick={onClick}
       layout
     >
       <motion.div
-        className="bg-black w-full relative py-6 px-4 rounded-xl"
+        className="bg-black w-full h-4/5 relative py-6 px-4 rounded-xl"
         layout
       >
         <motion.h1 layout>Rating:{index}</motion.h1>

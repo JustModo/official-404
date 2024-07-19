@@ -1,8 +1,10 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import useBountyHook from "../../components/BountyHook";
 import BountyCard from "../../components/BountyCard";
+import ExpandedBountyCard from "../../components/ExpandedBountyCard";
 import { Masonry } from "@mui/lab";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Bounty() {
   const { data, loading } = useBountyHook();
@@ -25,24 +27,46 @@ export default function Bounty() {
       "Lorem ips um dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex  ",
   };
 
+  const [selectedId, setSelectedId] = useState(null);
+
   return (
-    // <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 m-4 items-start">
-    <div className="w-full pb-20 flex flex-col items-center">
-      <Masonry
-        columns={{ xl: 4, md: 3, sm: 2, xs: 1 }}
-        spacing={2}
-        className="m-0"
-      >
-        {data.map((item, index) => (
-          <>
-            <BountyCard index={index} data={DATA1} />
-            <BountyCard index={index} data={DATA2} />
-            <BountyCard index={index} data={DATA3} />
-          </>
-        ))}
-      </Masonry>
-      {loading && <div className="text-xl font-bold">Loading....</div>}
-    </div>
-    // </div>
+    <AnimatePresence>
+      <div className="w-full pb-20 flex flex-col items-center">
+        <Masonry
+          columns={{ xl: 4, md: 3, sm: 2, xs: 1 }}
+          spacing={2}
+          className="m-0"
+        >
+          {data.map((item, index) => (
+            <motion.div className="bg-opacity-0 flex" layout>
+              <BountyCard
+                index={index}
+                data={DATA1}
+                layoutId={`item-${index}`}
+                onClick={() => setSelectedId(index)}
+              />
+            </motion.div>
+          ))}
+        </Masonry>
+        {loading && <div className="text-xl font-bold">Loading....</div>}
+      </div>
+      {selectedId !== null && (
+        <motion.div
+          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex z-30 justify-center items-center"
+          onClick={() => setSelectedId(null)}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          layout
+        >
+          <ExpandedBountyCard
+            className={"w-4/5"}
+            index={selectedId}
+            data={DATA1}
+            layoutId={`item-${selectedId}`}
+          />
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
