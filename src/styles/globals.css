@@ -24,3 +24,47 @@
 *::-webkit-scrollbar-track {
   background-color: #1e1e1e;
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background: linear-gradient(to right, #434343 0%, black 100%);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes reverse-gradient {
+  0%, 100% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient {
+  background: linear-gradient(to right, #434343 0%, black 100%);
+  background-size: 200% 200%;
+  animation: gradient 15s ease infinite;
+}
+
+.reverse-animated-gradient {
+  background: linear-gradient(to right, #434343 0%, black 100%);
+  background-size: 200% 200%;
+  animation: reverse-gradient 15s ease infinite;
+}
