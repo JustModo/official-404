@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import LanguageTag from "@components/LanguageTag";
-
+import LanguageTag from "@components/Bounty/LanguageTag";
 
 export default function ExpandedBountyCard({ index, data, onClick, layoutId }) {
   return (
