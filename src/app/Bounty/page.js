@@ -1,11 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import useBountyHook from "../../components/Bounty/BountyHook";
 import MasoneryGrid from "../../components/MasoneryGrid";
 import BountyCard from "../../components/Bounty/BountyCard";
 import ExpandedBountyCard from "../../components/Bounty/ExpandedBountyCard";
 import BountyHome from "../../components/Bounty/BountyHome";
-import { AnimatePresence, motion } from "framer-motion";
+import FilterAccordian from "../../components/Bounty/FilterAccordian";
 
 export default function Bounty() {
   const { data, loading } = useBountyHook();
@@ -23,6 +24,7 @@ export default function Bounty() {
     <>
       <BountyHome />
       <div className="w-full pb-20 flex flex-col items-center snap-start">
+        <FilterAccordian />
         <AnimatePresence>
           <MasoneryGrid>
             {data &&
