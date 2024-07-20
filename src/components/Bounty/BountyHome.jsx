@@ -13,21 +13,21 @@ export default function BountyHome() {
         </div>
         <div id="item2" className="carousel-item w-full h-full">
           <img
-            src="https://picsum.photos/1920/1080"
+            src="https://picsum.photos/1920/1080?grayscale"
             className="w-full h-full object-cover"
             alt="Item 2"
           />
         </div>
         <div id="item3" className="carousel-item w-full h-full">
           <img
-            src="https://picsum.photos/1920/1080"
+            src="https://picsum.photos/1920/1080/?blur"
             className="w-full h-full object-cover"
             alt="Item 3"
           />
         </div>
         <div id="item4" className="carousel-item w-full h-full">
           <img
-            src="https://picsum.photos/1920/1080"
+            src="https://picsum.photos/1920/1080?grayscale&blur=0.1"
             className="w-full h-full object-cover"
             alt="Item 4"
           />
