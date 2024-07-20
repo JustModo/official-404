@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="club404">
       <body>
         <div className="flex flex-col w-screen h-screen relative overflow-hidden">
           <NavBar />

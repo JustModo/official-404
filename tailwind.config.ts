@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-import daisyui from "daisyui"
+import daisyui from "daisyui";
 
 const config: Config = {
   content: [
@@ -7,38 +7,32 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {
-    extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
-      colors: {
-        'text': '#f1f2f3',
 
-        'background': '#0c1d2c',
-
-        'primary': '#8cb9de',
-
-        'secondary': '#3c2380', 
-
-        'accent': '#7d3cc8',
-
-        'light-text': '#0c0d0e',
-
-        'light-background': '#d3e4f3',
-
-        'light-primary': '#214e73',
-
-        'light-secondary': '#987fdc',
-        
-        'light-accent': '#7837c3',
-
-      }
-
-    },
-  },
   plugins: [daisyui],
+  daisyui: {
+    themes: [
+      {
+        club404: {
+          primary: "#f3f4f6",
+
+          secondary: "#0d1117",
+
+          accent: "#f59e0b",
+
+          neutral: "#000000",
+
+          "base-100": "#1c1917",
+
+          info: "#22d3ee",
+
+          success: "#00ff00",
+
+          warning: "#facc15",
+
+          error: "#ff0000",
+        },
+      },
+    ],
+  },
 };
 export default config;

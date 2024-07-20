@@ -1,5 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
+import LanguageTag from "@components/LanguageTag";
+
 
 export default function ExpandedBountyCard({ index, data, onClick, layoutId }) {
   return (
@@ -38,39 +40,12 @@ export default function ExpandedBountyCard({ index, data, onClick, layoutId }) {
           {data?.content}
         </motion.p>
         <motion.div
-          className="flex flex-row justify-start items-center mt-3 gap-1 overflow-x-hidden"
+          className="inline-flex flex-wrap justify-start items-center mt-3 gap-1 bg-secondary px-2 py-1 rounded-xl"
           layout
         >
-          <motion.div
-            className="rounded-2xl w-auto h-auto bg-blue-800 text-sm font-bold items-center justify-center flex px-4 py-1.5"
-            layout
-          >
-            Data Science
-          </motion.div>
-          <motion.div
-            className="rounded-2xl w-auto h-auto bg-blue-800 text-sm font-bold items-center justify-center flex px-4 py-1.5"
-            layout
-          >
-            C
-          </motion.div>
-          <motion.div
-            className="rounded-2xl w-auto h-auto bg-blue-800 text-sm font-bold items-center justify-center flex px-4 py-1.5"
-            layout
-          >
-            Linux
-          </motion.div>
-          <motion.div
-            className="rounded-2xl w-auto h-auto bg-blue-800 text-sm font-bold items-center justify-center flex px-4 py-1.5"
-            layout
-          >
-            Python
-          </motion.div>
-          <motion.div
-            className="rounded-2xl w-auto h-auto bg-blue-800 text-sm font-bold items-center justify-center flex px-4 py-1.5"
-            layout
-          >
-            Ransomware
-          </motion.div>
+          <LanguageTag language={"python"} />
+          <LanguageTag language={"java"} />
+          <LanguageTag language={"c"} />
         </motion.div>
       </motion.div>
     </motion.div>
