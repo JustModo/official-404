@@ -3,7 +3,7 @@ import "@styles/globals.css";
 
 export const metadata = {
   title: "Club 404",
-  description: "Offical Club 404 Site",
+  description: "Official Club 404 Site",
 };
 
 export default function RootLayout({ children }) {
@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
           <NavBar />
           <div
             id="mainwindow"
-            className="relative w-full h-full overflow-y-auto overflow-x-hidden snap-y snap-mandatory"
+            className="relative w-full h-full overflow-y-auto overflow-x-hidden"
           >
             {children}
           </div>
