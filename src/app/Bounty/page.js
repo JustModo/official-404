@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useBountyHook from "../../components/BountyHook";
 import MasoneryGrid from "../../components/MasoneryGrid";
 import BountyCard from "../../components/BountyCard";
@@ -7,7 +7,7 @@ import ExpandedBountyCard from "../../components/ExpandedBountyCard";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function Bounty() {
-  const { data, loading, temp } = useBountyHook();
+  const { data, loading } = useBountyHook();
 
   const DATA1 = {
     title:
@@ -22,23 +22,17 @@ export default function Bounty() {
     <div className="w-full pb-20 flex flex-col items-center">
       <AnimatePresence>
         <MasoneryGrid>
-          {data.map((item, index) => (
-            <motion.div className="bg-opacity-0 flex" key={item.id}>
-              <BountyCard
-                index={index}
-                data={item}
-                layoutId={`item-${item.id}`}
-                onClick={() => setSelectedId(item.id)}
-              />
-            </motion.div>
-          ))}
+          {data &&
+            data.map((item, index) => (
+              <motion.div className="bg-opacity-0 flex" key={item.id}>
+                <BountyCard
+                  data={item}
+                  layoutId={`item-${item.id}`}
+                  onClick={() => setSelectedId(item.id)}
+                />
+              </motion.div>
+            ))}
         </MasoneryGrid>
-        <div
-          className="fixed bottom-0 right-0 btn bg-pink-600"
-          onClick={() => temp()}
-        >
-          P
-        </div>
         {loading && <div className="text-xl font-bold">Loading....</div>}
         {selectedId !== null && (
           <motion.div

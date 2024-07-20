@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-export default function BountyCard({ data, onClick, layoutId, index }) {
+export default function BountyCard({ data, onClick, layoutId }) {
   return (
     <motion.div
       layoutId={layoutId}
@@ -9,6 +9,9 @@ export default function BountyCard({ data, onClick, layoutId, index }) {
       style={{ userSelect: "none" }}
       onClick={onClick}
       layout
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
     >
       <motion.div
         className="bg-black w-full relative py-6 px-4 rounded-xl"

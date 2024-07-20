@@ -17,7 +17,6 @@ export default function BountyHook() {
 
   const loadMore = (fetchData) => {
     if (!loading) {
-      console.log("Loaded More");
       setLoading(true);
 
       const newData = new Array(20).fill(0).map((_, index) => ({
@@ -64,7 +63,10 @@ export default function BountyHook() {
   //____________________________________________________________________ DEV FUNCTIONS ____________________________________________________________________
 
   useEffect(() => {
-    if (!initialFetchRef.current) loadMore();
+    if (!initialFetchRef.current) {
+      loadMore();
+      console.log("Initial Load");
+    }
     return () => {
       initialFetchRef.current = true;
     };
@@ -75,10 +77,10 @@ export default function BountyHook() {
       if (main.scrollTop + main.clientHeight >= main.scrollHeight - 2) {
         console.log("End of Page");
         setLoading(true);
-        loadMore();
-        // const timer = setTimeout(() => {
-        // }, 3000);
-        // return () => clearTimeout(timer);
+        const timer = setTimeout(() => {
+          loadMore();
+        }, 1000);
+        return () => clearTimeout(timer);
       }
     };
 

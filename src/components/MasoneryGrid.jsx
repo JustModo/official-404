@@ -1,12 +1,18 @@
-import React, { Children, cloneElement, useEffect } from "react";
+import React, {
+  Children,
+  cloneElement,
+  useCallback,
+  useEffect,
+  useMemo,
+} from "react";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
 export default function MasoneryGrid({ children }) {
-  const [col1, setCol1] = useState([]);
-  const [col2, setCol2] = useState([]);
-  const [col3, setCol3] = useState([]);
-  const [col4, setCol4] = useState([]);
+  // const [col1, setCol1] = useState([]);
+  // const [col2, setCol2] = useState([]);
+  // const [col3, setCol3] = useState([]);
+  // const [col4, setCol4] = useState([]);
 
   const isXl = useMediaQuery({ minWidth: 1280 });
   const isMd = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
@@ -15,7 +21,7 @@ export default function MasoneryGrid({ children }) {
 
   const [noCols, setNoCols] = useState(1);
 
-  useEffect(() => {
+  const updateNoCols = useCallback(() => {
     if (isXl) setNoCols(4);
     else if (isMd) setNoCols(3);
     else if (isSm) setNoCols(2);
@@ -23,10 +29,9 @@ export default function MasoneryGrid({ children }) {
   }, [isXl, isMd, isSm, isXs]);
 
   useEffect(() => {
-    console.log(noCols);
-  }, [noCols]);
-
-  useEffect(() => {
+    updateNoCols();
+  }, [updateNoCols]);
+  const [col1, col2, col3, col4] = useMemo(() => {
     const first = [];
     const second = [];
     const third = [];
@@ -44,10 +49,7 @@ export default function MasoneryGrid({ children }) {
       }
     });
 
-    setCol1(first);
-    setCol2(second);
-    setCol3(third);
-    setCol4(fourth);
+    return [first, second, third, fourth];
   }, [children, noCols]);
 
   return (
