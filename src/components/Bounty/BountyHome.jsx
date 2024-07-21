@@ -34,10 +34,18 @@ export default function BountyHome() {
         </div>
       </div>
       <div className="flex w-full max-w-screen-lg justify-center gap-2 py-2 mt-2">
-        <a href="#item1" className="btn btn-xs">1</a>
-        <a href="#item2" className="btn btn-xs">2</a>
-        <a href="#item3" className="btn btn-xs">3</a>
-        <a href="#item4" className="btn btn-xs">4</a>
+        <a href="#item1" className="btn btn-xs">
+          1
+        </a>
+        <a href="#item2" className="btn btn-xs">
+          2
+        </a>
+        <a href="#item3" className="btn btn-xs">
+          3
+        </a>
+        <a href="#item4" className="btn btn-xs">
+          4
+        </a>
       </div>
     </div>
   );

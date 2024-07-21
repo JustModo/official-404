@@ -26,7 +26,7 @@ export default function NavBar() {
             </Link>
           </li>
           <li className="hidden md:inline-block">
-            <Link href="/" className="text-text">
+            <Link href="/Auth/Login" className="text-text">
               Profile
             </Link>
           </li>
