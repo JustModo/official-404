@@ -17,7 +17,7 @@ export default function LanguageTag({ language }) {
   const logoObj = {
     c: C,
     cpp: CPP,
-    csharp: CSharp,
+    "c#": CSharp,
     css: CSS,
     go: GO,
     html: HTML,

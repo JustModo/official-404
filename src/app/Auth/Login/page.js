@@ -14,7 +14,7 @@ export default function page() {
         console.log("Yay");
       } else {
         const errorData = await res.json();
-        const errorMessage = errorData.message || "Login failed";
+        const errorMessage = errorData.message;
 
         throw new Error(errorMessage);
       }
@@ -23,28 +23,30 @@ export default function page() {
     }
   };
   return (
-    <div className="flex flex-col w-1/2">
-      <p>Login</p>
-      <form action={handleLogin}>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          className="input"
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          className="input"
-          required
-        />
-        <button type="submit" className="btn">
-          Login
-        </button>
-      </form>
-      {/* <SwitchButton title={"Register"} route={"Auth/Register"} /> */}
+    <div className="flex justify-center items-center w-full h-full flex-grow">
+      <div className="flex flex-col w-full max-w-sm md:max-w-md">
+        <p className="font-bold text-6xl">Login</p>
+        <form action={handleLogin} className="flex flex-col gap-2 mt-4">
+          <input
+            type="text"
+            name="email"
+            placeholder="Username"
+            className="input"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            className="input"
+            required
+          />
+          <button type="submit" className="btn mt-2">
+            Login
+          </button>
+        </form>
+        <SwitchButton title={"Register"} route={"Auth/Register"} />
+      </div>
     </div>
   );
 }

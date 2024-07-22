@@ -6,7 +6,7 @@ export default function BountyCard({ data, onClick, layoutId }) {
   return (
     <motion.div
       layoutId={layoutId}
-      className={`flex items-center overflow-hidden h-full`}
+      className={`flex items-center overflow-hidden h-full w-full`}
       style={{ userSelect: "none" }}
       onClick={onClick}
       layout
@@ -37,15 +37,15 @@ export default function BountyCard({ data, onClick, layoutId }) {
           className="text-base line-clamp-3 text-justify mt-2"
           style={{ lineHeight: "1.4rem" }}
         >
-          {data?.content}
+          {data?.description}
         </motion.p>
         <motion.div
           className="inline-flex flex-wrap justify-start items-center mt-3 gap-1 bg-secondary px-2 py-1 rounded-xl"
           layout
         >
-          <LanguageTag language={"python"} />
-          <LanguageTag language={"java"} />
-          <LanguageTag language={"c"} />
+          <LanguageTag language={data?.language} />
+          {/* <LanguageTag language={"java"} />
+          <LanguageTag language={"c"} /> */}
         </motion.div>
       </motion.div>
     </motion.div>

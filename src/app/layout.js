@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
       <body>
         <div className="flex flex-col w-screen h-screen relative overflow-hidden">
           <NavBar />
-          <CanvasEffect />
+          {/* <CanvasEffect /> */}
           <div
             id="mainwindow"
             className="relative w-full h-full overflow-y-auto overflow-x-hidden snap-y snap-mandatory"

@@ -2,8 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 
 export default function BountyHook() {
   const [data, setData] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [connectionErr, setConnectionErr] = useState(false);
+  const [hasSession, setHasSession] = useState(false);
+  const [isEndOfPage, setIsEndOfPage] = useState(false);
   const pageRef = useRef(page);
   const dataRef = useRef(data);
   const initialFetchRef = useRef(false);
@@ -15,56 +18,94 @@ export default function BountyHook() {
     dataRef.current = data;
   }, [data]);
 
-  const loadMore = (fetchData) => {
-    if (!loading) {
-      setLoading(true);
+  const loadMore = async () => {
+    if (loading || isEndOfPage) return;
 
-      const newData = new Array(20).fill(0).map((_, index) => ({
-        id: generateUniqueNumber(dataRef.current),
-        title: getRandomOutput(),
-        content:
-          "Lorem ips um dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderitin voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      }));
-      console.log(pageRef.current);
+    setLoading(true);
+
+    try {
+      if (!hasSession) {
+        const success = await getSession();
+        if (!success) {
+          setConnectionErr(true);
+          return;
+        }
+      }
+
+      const newData = await handleDataRequest(page);
+
+      if (!newData) {
+        console.error("Failed to get Data");
+        setConnectionErr(true);
+        return;
+      }
+
+      if (Array.isArray(newData) && newData.length === 0) {
+        setIsEndOfPage(true);
+        console.log("END");
+        return;
+      }
+
       setData((prevData) => [...prevData, ...newData]);
       setPage((prevPage) => prevPage + 1);
+    } catch (error) {
+      console.error("Error loading more data:", error);
+      setConnectionErr(true);
+    } finally {
       setLoading(false);
     }
   };
 
-  //____________________________________________________________________ DEV FUNCTIONS ____________________________________________________________________
+  const handleDataRequest = async (page) => {
+    try {
+      const formData = new FormData();
+      formData.append("page_number", page);
+      const res = await fetch("/api/get-bounty", {
+        method: "POST",
+        body: formData,
+      });
 
-  function getRandomOutput() {
-    const outputs = [
-      "Sum of first 20 prime numbers using loop Sum of first 20 prime  ",
-      "Sum of first 20 prime numbers ",
-      "Sum of first 20 prime numbers using loop Sum of first 20 prime numbers using loop Sum of first 20 prime numbers using loop Sum of first 20 prime numbers using loop  ",
-    ];
+      if (!res.ok) {
+        const errorData = await res.json();
+        const errorMessage = errorData.message;
+        console.error(errorMessage);
+        return null;
+      }
+      const data = await res.json();
+      return data.message;
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-    const randomIndex = Math.floor(Math.random() * outputs.length);
+  const getSession = async () => {
+    try {
+      const res = await fetch("/api/bounty-session", {
+        method: "POST",
+      });
 
-    return outputs[randomIndex];
-  }
-
-  function generateUniqueNumber(data) {
-    const generateRandomNumber = () =>
-      Math.floor(100000 + Math.random() * 900000);
-
-    let uniqueNumber;
-    const existingNumbers = new Set(data);
-
-    do {
-      uniqueNumber = generateRandomNumber();
-    } while (existingNumbers.has(uniqueNumber));
-
-    return uniqueNumber;
-  }
-
-  //____________________________________________________________________ DEV FUNCTIONS ____________________________________________________________________
+      if (res.ok) {
+        console.log("Got Sess");
+        setHasSession(true);
+        return true;
+      } else {
+        const errorData = await res.json();
+        const errorMessage = errorData.message;
+        console.error(errorMessage);
+        setHasSession(false);
+        return false;
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
     if (!initialFetchRef.current) {
-      loadMore();
+      async function call() {
+        await loadMore();
+      }
+      call();
       console.log("Initial Load");
     }
     return () => {
@@ -74,13 +115,16 @@ export default function BountyHook() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (main.scrollTop + main.clientHeight >= main.scrollHeight - 2) {
+      if (
+        main.scrollTop + main.clientHeight >= main.scrollHeight - 2 &&
+        hasSession &&
+        !isEndOfPage
+      ) {
         console.log("End of Page");
-        setLoading(true);
-        const timer = setTimeout(() => {
-          loadMore();
-        }, 1000);
-        return () => clearTimeout(timer);
+        const asyncLoadMore = async () => {
+          await loadMore();
+        };
+        asyncLoadMore();
       }
     };
 
@@ -90,9 +134,5 @@ export default function BountyHook() {
     return () => main.removeEventListener("scroll", handleScroll);
   }, [loading]);
 
-  function temp() {
-    loadMore();
-  }
-
-  return { data, loading, temp };
+  return { data, loading, connectionErr, isEndOfPage };
 }

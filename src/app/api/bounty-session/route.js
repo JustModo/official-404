@@ -2,9 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
-    const formData = await req.formData();
-
-    const response = await loginRequest(formData);
+    const response = await handleRequest();
 
     if (!response.ok) {
       const errorData = await response.text();
@@ -14,22 +12,14 @@ export async function POST(req) {
         { status: response.status }
       );
     }
-
-    const authCookie = response.headers.get("set-cookie");
-
-    if (!authCookie) {
-      return NextResponse.json(
-        { message: "Not Authenticated" },
-        { status: 500 }
-      );
-    }
+    const bountyCookie = response.headers.get("set-cookie");
 
     return NextResponse.json(
-      { message: "Login successful" },
+      { message: "Got Session" },
       {
         status: 200,
         headers: {
-          "set-cookie": authCookie,
+          "set-cookie": bountyCookie,
         },
       }
     );
@@ -39,12 +29,14 @@ export async function POST(req) {
   }
 }
 
-export const loginRequest = async (formData) => {
+export const handleRequest = async () => {
   try {
-    const response = await fetch("https://club.modo-dev.com/login", {
-      method: "POST",
-      body: formData,
-    });
+    const response = await fetch(
+      "https://club.modo-dev.com/create-session-for-bounty-get-random",
+      {
+        method: "POST",
+      }
+    );
     return response;
   } catch (err) {
     console.error(err);

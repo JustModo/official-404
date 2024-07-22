@@ -4,6 +4,16 @@ export async function POST(req) {
   try {
     const formData = await req.formData();
 
+    const regResponse = await registerRequest(formData);
+
+    if (!regResponse.ok) {
+      const errorData = await regResponse.text();
+      console.log(errorData);
+      return NextResponse.json(
+        { message: errorData },
+        { status: regResponse.status }
+      );
+    }
     const response = await loginRequest(formData);
 
     if (!response.ok) {
@@ -25,7 +35,7 @@ export async function POST(req) {
     }
 
     return NextResponse.json(
-      { message: "Login successful" },
+      { message: "Register and Login successful" },
       {
         status: 200,
         headers: {
@@ -39,9 +49,9 @@ export async function POST(req) {
   }
 }
 
-export const loginRequest = async (formData) => {
+export const registerRequest = async (formData) => {
   try {
-    const response = await fetch("https://club.modo-dev.com/login", {
+    const response = await fetch("https://club.modo-dev.com/register", {
       method: "POST",
       body: formData,
     });
