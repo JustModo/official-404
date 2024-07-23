@@ -14,7 +14,7 @@ export async function POST(req) {
         { status: regResponse.status }
       );
     }
-    
+
     const response = await loginRequest(formData);
     console.log(response);
 
@@ -60,6 +60,7 @@ const registerRequest = async (formData) => {
     return response;
   } catch (err) {
     console.error(err);
+    return undefined;
   }
 };
 
@@ -72,5 +73,6 @@ export const loginRequest = async (formData) => {
     return response;
   } catch (err) {
     console.error(err);
+    return undefined;
   }
 };

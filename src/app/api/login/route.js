@@ -1,3 +1,4 @@
+import { log } from "console";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
@@ -16,6 +17,7 @@ export async function POST(req) {
     }
 
     const authCookie = response.headers.get("set-cookie");
+    console.log(authCookie);
 
     if (!authCookie) {
       return NextResponse.json(
@@ -48,5 +50,6 @@ const loginRequest = async (formData) => {
     return response;
   } catch (err) {
     console.error(err);
+    return undefined;
   }
 };

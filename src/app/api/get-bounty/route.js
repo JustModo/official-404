@@ -5,13 +5,7 @@ export async function POST(req) {
   try {
     const formData = await req.formData();
 
-    const cookieString = cookies()
-      .getAll()
-      .map((cookie) => `${cookie.name}=${cookie.value}`)
-      .join("; ");
-    // console.log(cookieString);
-
-    const response = await getBountyRequest(formData, cookieString);
+    const response = await getBountyRequest(formData, req.headers);
 
     if (!response.ok) {
       const errorData = await response.text();
@@ -36,7 +30,7 @@ export async function POST(req) {
   }
 }
 
-export const getBountyRequest = async (formData, cookieString) => {
+export const getBountyRequest = async (formData, headers) => {
   try {
     const response = await fetch(
       "https://club.modo-dev.com/bounty-get-random",
@@ -44,12 +38,13 @@ export const getBountyRequest = async (formData, cookieString) => {
         method: "POST",
         body: formData,
         headers: {
-          Cookie: cookieString,
+          Cookie: headers.get("cookie"),
         },
       }
     );
     return response;
   } catch (err) {
     console.error(err);
+    return undefined;
   }
 };

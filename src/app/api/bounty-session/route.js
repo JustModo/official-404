@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
-    const response = await handleRequest();
+    const response = await handleRequest(req.headers);
 
     if (!response.ok) {
       const errorData = await response.text();
@@ -13,6 +13,7 @@ export async function POST(req) {
       );
     }
     const bountyCookie = response.headers.get("set-cookie");
+    console.log(bountyCookie);
 
     return NextResponse.json(
       { message: "Got Session" },
@@ -29,16 +30,20 @@ export async function POST(req) {
   }
 }
 
-export const handleRequest = async () => {
+export const handleRequest = async (headers) => {
   try {
     const response = await fetch(
       "https://club.modo-dev.com/create-session-for-bounty-get-random",
       {
         method: "POST",
+        headers: {
+          Cookie: headers.get("cookie"),
+        },
       }
     );
     return response;
   } catch (err) {
     console.error(err);
+    return undefined;
   }
 };
