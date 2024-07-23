@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function NavBar() {
   return (
-    <div className="navbar reverse-animated-gradient text-text z-20">
+    <div className="navbar bg-neutral text-text z-20">
       <div className="flex-1">
         <a className="btn btn-ghost text-xl">Club404</a>
       </div>

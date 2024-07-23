@@ -3,12 +3,13 @@ import React from "react";
 export default function BountyHome() {
   return (
     <div className="bg-neutral w-full h-full flex flex-col justify-center items-center snap-start">
-      <div className="carousel w-full h-full">
+      <div className="carousel w-full h-full" style={{userSelect:"none"}}>
         <div id="item1" className="carousel-item w-full h-full">
           <img
             src="https://picsum.photos/1920/1080"
             className="w-full h-full object-cover"
             alt="Item 1"
+            draggable={false}
           />
         </div>
         <div id="item2" className="carousel-item w-full h-full">
@@ -16,6 +17,7 @@ export default function BountyHome() {
             src="https://picsum.photos/1920/1080?grayscale"
             className="w-full h-full object-cover"
             alt="Item 2"
+            draggable={false}
           />
         </div>
         <div id="item3" className="carousel-item w-full h-full">
@@ -23,6 +25,7 @@ export default function BountyHome() {
             src="https://picsum.photos/1920/1080/?blur"
             className="w-full h-full object-cover"
             alt="Item 3"
+            draggable={false}
           />
         </div>
         <div id="item4" className="carousel-item w-full h-full">
@@ -30,6 +33,7 @@ export default function BountyHome() {
             src="https://picsum.photos/1920/1080?grayscale&blur=0.1"
             className="w-full h-full object-cover"
             alt="Item 4"
+            draggable={false}
           />
         </div>
       </div>

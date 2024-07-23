@@ -9,7 +9,7 @@ export async function POST(req) {
       .getAll()
       .map((cookie) => `${cookie.name}=${cookie.value}`)
       .join("; ");
-    console.log(cookieString);
+    // console.log(cookieString);
 
     const response = await getBountyRequest(formData, cookieString);
 

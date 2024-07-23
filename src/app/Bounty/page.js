@@ -7,6 +7,7 @@ import BountyCard from "../../components/Bounty/BountyCard";
 import ExpandedBountyCard from "../../components/Bounty/ExpandedBountyCard";
 import BountyHome from "../../components/Bounty/BountyHome";
 import FilterAccordian from "../../components/Bounty/FilterAccordian";
+import ErrorPage from "@components/Bounty/ErrorPage";
 
 export default function Bounty() {
   const { data, loading, connectionErr, isEndOfPage } = useBountyHook();
@@ -19,12 +20,13 @@ export default function Bounty() {
   };
 
   const [selectedId, setSelectedId] = useState(null);
+  const [selectedData, setSelectedData] = useState(null);
 
   return (
     <>
       <BountyHome />
-      <div className="w-full pb-10 flex flex-col items-center snap-start">
-        {!connectionErr ? (
+      {!connectionErr ? (
+        <div className="w-full h-auto pb-10 flex flex-col items-center snap-start">
           <>
             <FilterAccordian />
             <AnimatePresence>
@@ -35,13 +37,18 @@ export default function Bounty() {
                       <BountyCard
                         data={item}
                         layoutId={`item-${item.id}`}
-                        onClick={() => setSelectedId(item.id)}
+                        onClick={() => {
+                          setSelectedId(item.id);
+                          setSelectedData(item);
+                        }}
                       />
                     </motion.div>
                   ))}
               </MasoneryGrid>
               {loading && (
-                <div className="text-xl font-bold mt-4">Loading....</div>
+                <div className="mt-4">
+                  <span className="loading loading-dots loading-lg"></span>
+                </div>
               )}
               {isEndOfPage && (
                 <div className="text-xl font-bold mt-4">
@@ -51,24 +58,26 @@ export default function Bounty() {
               {selectedId !== null && (
                 <motion.div
                   className="fixed top-0 left-0 w-full h-full bg-opacity-50 flex z-30 justify-center items-center bg-black"
-                  onClick={() => setSelectedId(null)}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                 >
                   <ExpandedBountyCard
-                    index={selectedId}
-                    data={DATA1}
+                    data={selectedData}
                     layoutId={`item-${selectedId}`}
+                    onClick={() => {
+                      setSelectedId(null);
+                      setSelectedData(null);
+                    }}
                   />
                 </motion.div>
               )}
             </AnimatePresence>
           </>
-        ) : (
-          <div>Failed</div>
-        )}
-      </div>
+        </div>
+      ) : (
+        <ErrorPage />
+      )}
     </>
   );
 }

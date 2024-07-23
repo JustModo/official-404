@@ -8,7 +8,7 @@ export async function POST(req) {
 
     if (!response.ok) {
       const errorData = await response.text();
-      console.log(errorData);
+      console.error(errorData);
       return NextResponse.json(
         { message: errorData },
         { status: response.status }
@@ -39,7 +39,7 @@ export async function POST(req) {
   }
 }
 
-export const loginRequest = async (formData) => {
+const loginRequest = async (formData) => {
   try {
     const response = await fetch("https://club.modo-dev.com/login", {
       method: "POST",

@@ -25,12 +25,12 @@
   background-color: #1e1e1e;
 }
 
-html, body {
+/* html, body {
   height: 100%;
   margin: 0;
-}
+} */
 
-body {
+/* body {
   display: flex;
   flex-direction: column;
   color: white;
@@ -40,10 +40,9 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-}
+} */
 
-
-canvas {
+/* canvas {
   position: fixed; 
   top: 0;
   left: 0;
@@ -51,10 +50,9 @@ canvas {
   width: 100vw; 
   height: 100vh; 
   pointer-events: none; 
-}
+} */
 
-
-@keyframes gradient {
+/* @keyframes gradient {
   0%, 100% {
     background-position: 0% 50%;
   }
@@ -82,4 +80,5 @@ canvas {
   background: linear-gradient(to right, #434343 0%, black 100%);
   background-size: 200% 200%;
   animation: reverse-gradient 15s ease infinite;
-}
+} */
+

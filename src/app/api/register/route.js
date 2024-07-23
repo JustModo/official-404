@@ -8,17 +8,19 @@ export async function POST(req) {
 
     if (!regResponse.ok) {
       const errorData = await regResponse.text();
-      console.log(errorData);
+      console.error(errorData);
       return NextResponse.json(
         { message: errorData },
         { status: regResponse.status }
       );
     }
+    
     const response = await loginRequest(formData);
+    console.log(response);
 
     if (!response.ok) {
       const errorData = await response.text();
-      console.log(errorData);
+      console.error(errorData);
       return NextResponse.json(
         { message: errorData },
         { status: response.status }
@@ -49,9 +51,21 @@ export async function POST(req) {
   }
 }
 
-export const registerRequest = async (formData) => {
+const registerRequest = async (formData) => {
   try {
     const response = await fetch("https://club.modo-dev.com/register", {
+      method: "POST",
+      body: formData,
+    });
+    return response;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const loginRequest = async (formData) => {
+  try {
+    const response = await fetch("https://club.modo-dev.com/login", {
       method: "POST",
       body: formData,
     });

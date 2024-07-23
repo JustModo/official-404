@@ -15,7 +15,6 @@ export default function page() {
       } else {
         const errorData = await res.json();
         const errorMessage = errorData.message;
-
         throw new Error(errorMessage);
       }
     } catch (err) {
@@ -23,8 +22,8 @@ export default function page() {
     }
   };
   return (
-    <div className="flex justify-center items-center w-full h-full flex-grow">
-      <div className="flex flex-col w-full max-w-sm md:max-w-md">
+    <div className="flex justify-center items-center w-full h-full flex-grow bg-neutral">
+      <div className="flex flex-col w-full max-w-sm md:max-w-md l">
         <p className="font-bold text-6xl">Login</p>
         <form action={handleLogin} className="flex flex-col gap-2 mt-4">
           <input

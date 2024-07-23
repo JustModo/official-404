@@ -21,7 +21,7 @@ export default function page() {
     }
   };
   return (
-    <div className="flex justify-center items-center w-full h-full flex-grow">
+    <div className="flex justify-center items-center w-full h-full flex-grow bg-neutral">
       <div className="flex flex-col w-full max-w-sm md:max-w-md">
         <p className="font-bold text-6xl">Register</p>
         <form action={handleRegister} className="flex flex-col gap-2 mt-4">

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React, { useState } from "react";
+import { FaFilter } from "react-icons/fa6";
 
 export default function FilterAccordian() {
   const [isOpen, setisOpen] = useState(false);
@@ -26,7 +27,7 @@ export default function FilterAccordian() {
             className="btn bg-neutral rounded-b-none"
             onClick={() => setisOpen((prev) => !prev)}
           >
-            X
+            <FaFilter />
           </div>
         </div>
       </div>

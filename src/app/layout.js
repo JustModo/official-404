@@ -1,6 +1,7 @@
 // src/app/layout.js
 import NavBar from "@/components/NavBar";
 import CanvasEffect from "@/components/CanvasEffect.jsx";
+import GradientBG from "@/components/GradientBG";
 import "@styles/globals.css";
 
 export const metadata = {
@@ -17,8 +18,9 @@ export default function RootLayout({ children }) {
           {/* <CanvasEffect /> */}
           <div
             id="mainwindow"
-            className="relative w-full h-full overflow-y-auto overflow-x-hidden snap-y snap-mandatory"
+            className="mainwindow relative w-full h-full overflow-y-auto overflow-x-hidden snap-y snap-mandatory"
           >
+            <GradientBG />
             {children}
           </div>
         </div>

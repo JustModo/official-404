@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import LanguageTag from "@components/Bounty/LanguageTag";
+import StarRating from "@components/Bounty/StarRating";
 
 export default function BountyCard({ data, onClick, layoutId }) {
   return (
@@ -18,7 +19,9 @@ export default function BountyCard({ data, onClick, layoutId }) {
         className="bg-neutral w-full relative py-6 px-4 rounded-xl"
         layout
       >
-        <motion.h1 layout>Rating:{data?.id}</motion.h1>
+        <motion.h1 layout>
+          <StarRating rating={3} id={data?.id} />
+        </motion.h1>
         <motion.h1
           className="text-primary text-xl font-bold mt-2"
           style={{ lineHeight: "1.6rem" }}

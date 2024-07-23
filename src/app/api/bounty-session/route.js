@@ -6,7 +6,7 @@ export async function POST(req) {
 
     if (!response.ok) {
       const errorData = await response.text();
-      console.log(errorData);
+      console.error(errorData);
       return NextResponse.json(
         { message: errorData },
         { status: response.status }
