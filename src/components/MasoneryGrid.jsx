@@ -7,13 +7,9 @@ import React, {
 } from "react";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function MasoneryGrid({ children }) {
-  // const [col1, setCol1] = useState([]);
-  // const [col2, setCol2] = useState([]);
-  // const [col3, setCol3] = useState([]);
-  // const [col4, setCol4] = useState([]);
-
   const isXl = useMediaQuery({ minWidth: 1280 });
   const isMd = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
   const isSm = useMediaQuery({ minWidth: 640, maxWidth: 767 });
@@ -53,25 +49,33 @@ export default function MasoneryGrid({ children }) {
   }, [children, noCols]);
 
   return (
-    <div className="w-full columns-1 sm:columns-2 md:columns-3 xl:columns-4 p-2">
-      <div className="first-col flex flex-1 flex-col gap-4 break-inside-avoid">
-        {col1.map((child, index) => cloneElement(child))}
-      </div>
+    <motion.div className="w-full columns-1 sm:columns-2 md:columns-3 xl:columns-4 p-2">
+      <AnimatePresence>
+        <motion.div className="first-col flex flex-1 flex-col gap-4 break-inside-avoid">
+          {col1.map((child, index) => cloneElement(child))}
+        </motion.div>
+      </AnimatePresence>
       {noCols > 1 && (
-        <div className="second-col flex flex-1 flex-col gap-4 break-inside-avoid">
-          {col2.map((child, index) => cloneElement(child))}
-        </div>
+        <AnimatePresence>
+          <motion.div className="second-col flex flex-1 flex-col gap-4 break-inside-avoid">
+            {col2.map((child, index) => cloneElement(child))}
+          </motion.div>
+        </AnimatePresence>
       )}
       {noCols > 2 && (
-        <div className="third-col flex flex-1 flex-col gap-4 break-inside-avoid">
-          {col3.map((child, index) => cloneElement(child))}
-        </div>
+        <AnimatePresence>
+          <motion.div className="third-col flex flex-1 flex-col gap-4 break-inside-avoid">
+            {col3.map((child, index) => cloneElement(child))}
+          </motion.div>
+        </AnimatePresence>
       )}
       {noCols > 3 && (
-        <div className="fourth-col flex flex-1 flex-col gap-4 break-inside-avoid">
-          {col4.map((child, index) => cloneElement(child))}
-        </div>
+        <AnimatePresence>
+          <motion.div className="fourth-col flex flex-1 flex-col gap-4 break-inside-avoid">
+            {col4.map((child, index) => cloneElement(child))}
+          </motion.div>
+        </AnimatePresence>
       )}
-    </div>
+    </motion.div>
   );
 }

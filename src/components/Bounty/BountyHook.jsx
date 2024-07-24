@@ -67,8 +67,13 @@ export default function BountyHook() {
 
       if (!res.ok) {
         const errorData = await res.json();
-        const errorMessage = errorData.message;
-        console.error(errorMessage);
+        if (res.status === 524) {
+          const errorMessage = "Server Error";
+          console.error(errorMessage);
+        } else {
+          const errorMessage = errorData.message;
+          console.error(errorMessage);
+        }
         return null;
       }
       const data = await res.json();
