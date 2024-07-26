@@ -25,11 +25,11 @@ const config: Config = {
     themes: [
       {
         club404: {
-          primary: "#f3f4f6",
-          secondary: "#0d1117",
+          primary: "#374151",
+          secondary: "#1f2937",
           accent: "#f59e0b",
           neutral: "#000000",
-          "base-100": "#1c1917",
+          "base-100": "#0d1117",
           info: "#22d3ee",
           success: "#00ff00",
           warning: "#facc15",

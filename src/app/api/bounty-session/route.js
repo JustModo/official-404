@@ -13,7 +13,6 @@ export async function POST(req) {
       );
     }
     const bountyCookie = response.headers.get("set-cookie");
-    console.log(bountyCookie);
 
     return NextResponse.json(
       { message: "Got Session" },

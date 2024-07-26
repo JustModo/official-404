@@ -25,6 +25,16 @@
   background-color: #1e1e1e;
 }
 
+@layer utilities {
+  .stripecontainer > :nth-child(odd) {
+    @apply bg-primary;
+  }
+
+  .stripecontainer > :nth-child(even) {
+    @apply bg-secondary;
+  }
+}
+
 /* html, body {
   height: 100%;
   margin: 0;
@@ -81,4 +91,3 @@
   background-size: 200% 200%;
   animation: reverse-gradient 15s ease infinite;
 } */
-

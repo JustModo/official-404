@@ -6,7 +6,7 @@ export default async function page({ params }) {
   const data = await getBounty(params.bountyid);
 
   return (
-    <div className="bg-neutral w-full p-5">
+    <div className="w-full p-5">
       <div className="flex flex-row">
         <StarRating rating={3} id={data?.id} />
       </div>

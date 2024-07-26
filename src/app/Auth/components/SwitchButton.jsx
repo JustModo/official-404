@@ -7,7 +7,7 @@ export default function SwitchButton({ title, route }) {
 
   return (
     <div
-      className="btn btn-link"
+      className="btn btn-link text-zinc-500"
       onClick={() => {
         router.push(`/${route ? route : ""}`);
       }}
