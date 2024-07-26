@@ -63,6 +63,7 @@ export default function BountyHook() {
       const res = await fetch("/api/get-bounty", {
         method: "POST",
         body: formData,
+        credentials: "include",
       });
 
       if (!res.ok) {
@@ -87,6 +88,7 @@ export default function BountyHook() {
     try {
       const res = await fetch("/api/bounty-session", {
         method: "POST",
+        credentials: "include",
       });
 
       if (res.ok) {

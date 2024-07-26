@@ -13,6 +13,7 @@ export async function POST(req) {
       );
     }
     const bountyCookie = response.headers.get("set-cookie");
+    console.log(bountyCookie);
 
     return NextResponse.json(
       { message: "Got Session" },
@@ -35,9 +36,10 @@ export const handleRequest = async (headers) => {
       "https://club.modo-dev.com/create-session-for-bounty-get-random",
       {
         method: "POST",
-        // headers: {
-        //   Cookie: headers.get("cookie"),
-        // },
+        credentials: "include",
+        headers: {
+          Cookie: headers.get("cookie"),
+        },
       }
     );
     return response;

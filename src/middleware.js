@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function middleware(req) {
   const isLoggedIn = await checkAuth(req.headers);
-  console.log(isLoggedIn);
+  console.log("here");
 
   if (req.nextUrl.pathname === "/Profile" && !isLoggedIn) {
     return NextResponse.redirect(new URL("/Auth/Login", req.url));
@@ -22,6 +22,7 @@ export const config = {
 
 async function checkAuth(headers) {
   try {
+    console.log(headers.get("cookie"), "authcookie");
     const response = await fetch("https://club.modo-dev.com/validate-login", {
       method: "POST",
       headers: {

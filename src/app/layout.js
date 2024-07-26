@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
           {/* <CanvasEffect /> */}
           <div
             id="mainwindow"
-            className="mainwindow relative w-full h-full overflow-y-auto overflow-x-hidden snap-y snap-mandatory"
+            className="mainwindow relative w-full h-full overflow-y-auto overflow-x-hidden snap-y snap-proximity"
           >
             <GradientBG />
             {children}

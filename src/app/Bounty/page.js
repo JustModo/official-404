@@ -14,13 +14,6 @@ export default function Bounty() {
   const { data, loading, connectionErr, isEndOfPage } = useBountyHook();
   const router = useRouter();
 
-  const DATA1 = {
-    title:
-      "Sum of first 20 prime numbers using loop Sum of first 20 prime numbers using loop ",
-    content:
-      "Lorem ips um dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderitin voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  };
-
   const [selectedId, setSelectedId] = useState(null);
   const [selectedData, setSelectedData] = useState(null);
 

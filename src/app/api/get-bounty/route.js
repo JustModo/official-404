@@ -38,6 +38,7 @@ export const getBountyRequest = async (formData, headers) => {
         body: formData,
         headers: {
           Cookie: headers.get("cookie"),
+          credentials: "include",
         },
       }
     );

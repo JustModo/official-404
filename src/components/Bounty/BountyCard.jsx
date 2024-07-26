@@ -47,8 +47,6 @@ export default function BountyCard({ data, onClick, layoutId }) {
           layout
         >
           <LanguageTag language={data?.language} />
-          {/* <LanguageTag language={"java"} />
-          <LanguageTag language={"c"} /> */}
         </motion.div>
       </motion.div>
     </motion.div>

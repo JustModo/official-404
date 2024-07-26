@@ -50,31 +50,23 @@ export default function MasoneryGrid({ children }) {
 
   return (
     <motion.div className="w-full columns-1 sm:columns-2 md:columns-3 xl:columns-4 p-2">
-      <AnimatePresence>
-        <motion.div className="first-col flex flex-1 flex-col gap-4 break-inside-avoid">
-          {col1.map((child, index) => cloneElement(child))}
-        </motion.div>
-      </AnimatePresence>
+      <motion.div className="first-col flex flex-1 flex-col gap-4 break-inside-avoid">
+        {col1.map((child, index) => cloneElement(child))}
+      </motion.div>
       {noCols > 1 && (
-        <AnimatePresence>
-          <motion.div className="second-col flex flex-1 flex-col gap-4 break-inside-avoid">
-            {col2.map((child, index) => cloneElement(child))}
-          </motion.div>
-        </AnimatePresence>
+        <motion.div className="second-col flex flex-1 flex-col gap-4 break-inside-avoid">
+          {col2.map((child, index) => cloneElement(child))}
+        </motion.div>
       )}
       {noCols > 2 && (
-        <AnimatePresence>
-          <motion.div className="third-col flex flex-1 flex-col gap-4 break-inside-avoid">
-            {col3.map((child, index) => cloneElement(child))}
-          </motion.div>
-        </AnimatePresence>
+        <motion.div className="third-col flex flex-1 flex-col gap-4 break-inside-avoid">
+          {col3.map((child, index) => cloneElement(child))}
+        </motion.div>
       )}
       {noCols > 3 && (
-        <AnimatePresence>
-          <motion.div className="fourth-col flex flex-1 flex-col gap-4 break-inside-avoid">
-            {col4.map((child, index) => cloneElement(child))}
-          </motion.div>
-        </AnimatePresence>
+        <motion.div className="fourth-col flex flex-1 flex-col gap-4 break-inside-avoid">
+          {col4.map((child, index) => cloneElement(child))}
+        </motion.div>
       )}
     </motion.div>
   );
