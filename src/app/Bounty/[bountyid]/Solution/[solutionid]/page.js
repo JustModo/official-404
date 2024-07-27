@@ -1,10 +1,20 @@
 import { notFound } from "next/navigation";
 import React from "react";
+import FolderBreadCrumb from "./components/FolderBreadCrumb";
+import CodeWindow from "./components/CodeWindow";
 
 export default async function page({ params }) {
-  const data = await getSolution(params.solutionid);
+  // const data = await getSolution(params.solutionid);
   // if (!data) return notFound();
-  return <div>{params.solutionid}</div>;
+  return (
+    <>
+      <div className="divider m-0 p-0 h-auto" />
+      <FolderBreadCrumb />
+      <div className="flex flex-grow bg-base-300 overflow-hiddens">
+        <CodeWindow />
+      </div>
+    </>
+  );
 }
 
 async function getSolution(id) {

@@ -10,7 +10,7 @@ export default function BreadCrumb({ bountyid }) {
 
   console.log(pathname, solPath);
   return (
-    <div className="breadcrumbs text-sm ml-5 pt-5">
+    <div className="breadcrumbs text-sm m-0 p-0 ml-5 my-3 flex-shrink-0 flex-grow-0">
       <ul>
         <li>
           <a onClick={() => router.push(`/Bounty/${bountyid}`)}>Bounty</a>

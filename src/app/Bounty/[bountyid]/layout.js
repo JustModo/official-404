@@ -9,7 +9,7 @@ export default async function layout({ children, params }) {
   // if (!data) return notFound();
 
   return (
-    <div className="w-full bg-base-100 h-full">
+    <div className="w-full bg-base-100 h-full flex-grow flex flex-col">
       <BreadCrumbs bountyid={bountyid} />
       {children}
     </div>
