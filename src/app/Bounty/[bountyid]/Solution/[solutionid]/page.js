@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import React from "react";
-import FolderBreadCrumb from "./components/FolderBreadCrumb";
+// import FolderBreadCrumb from "./components/FolderBreadCrumb";
 import CodeWindow from "./components/CodeWindow";
 
 export default async function page({ params }) {
@@ -9,7 +9,7 @@ export default async function page({ params }) {
   return (
     <>
       <div className="divider m-0 p-0 h-auto" />
-      <FolderBreadCrumb />
+      {/* <FolderBreadCrumb /> */}
       <div className="flex flex-grow bg-base-300 overflow-hiddens">
         <CodeWindow />
       </div>
