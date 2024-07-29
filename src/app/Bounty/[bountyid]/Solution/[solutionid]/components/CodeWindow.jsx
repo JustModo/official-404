@@ -3,23 +3,11 @@ import React, { useEffect, useState } from "react";
 import Editor from "@monaco-editor/react";
 import FolderBreadCrumbs from "./FolderBreadCrumb";
 import FileTabs from "./FileTabs";
+import { getLanguageFromExt, examplefiledir } from "./util";
 
 export default function CodeWindow() {
-  const filedir = {
-    "test1.c": "content of test1.c",
-    "test2.c": "content of test2.c",
-    folder1: {
-      "test3.c": "content of test3.c",
-      "test4.c": "content of test4.c",
-      folder2: {
-        "test5.c": "content of test5.c",
-        "test6.c": "content of test6.c",
-      },
-    },
-  };
-
-  const [data, setData] = useState(filedir);
-  const [currentDir, setCurrentDir] = useState(["folder1", "folder2"]);
+  const [data, setData] = useState(examplefiledir);
+  const [currentDir, setCurrentDir] = useState([]);
   const [currentDirFiles, setCurrentDirFiles] = useState([]);
 
   const goToFolder = (folder) => {
@@ -58,24 +46,53 @@ export default function CodeWindow() {
         });
       }
     }
-    console.log(res);
     return res;
+  };
+
+  const setPath = (path) => {
+    let tempData = currentDir;
+    tempData.push(path);
+    setCurrentDir(tempData);
+    getCurrentFolderContents(tempData, data);
+  };
+
+  const [content, setContent] = useState("");
+  const [selected, setSelected] = useState("");
+  const [language, setLanguage] = useState("");
+
+  const setContentCall = (content) => {
+    setContent(content);
   };
 
   useEffect(() => {
     getCurrentFolderContents(currentDir, data);
   }, [currentDir, data]);
 
+  useEffect(() => {
+    if (selected === "" || !selected) return;
+    setLanguage(getLanguageFromExt(selected.split(".")[1]));
+  }, [selected]);
+
   return (
     <div className="flex flex-grow flex-col">
       <FolderBreadCrumbs dir={currentDir} goToFolder={goToFolder} />
-      <FileTabs data={currentDirFiles} />
-      <Editor
-        language="python"
-        value="print('Hello')"
-        options={{ readOnly: true }}
-        theme="vs-dark"
-      />
+      {data && (
+        <>
+          <FileTabs
+            data={currentDirFiles}
+            setPath={setPath}
+            setContent={setContentCall}
+            setSelected={setSelected}
+            selected={selected}
+          />
+          <Editor
+            language={language}
+            value={content}
+            options={{ readOnly: true }}
+            theme="vs-dark"
+          />
+        </>
+      )}
     </div>
   );
 }
