@@ -23,7 +23,7 @@ export const examplefiledir = {
   "test2.c": `#include <stdio.h>
 
 int main() {
-    printf("Hello, World!${"\n"}");
+    printf("Hello, World!\\n");
     return 0;
 }`,
   folder1: {
