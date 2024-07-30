@@ -1,12 +1,11 @@
 "use client";
-import React, { useState } from "react";
-import { CiFileOn } from "react-icons/ci";
+import React from "react";
 import { CiFolderOn } from "react-icons/ci";
 import { FaHome } from "react-icons/fa";
 
 export default function FolderBreadCrumbs({ dir, goToFolder }) {
   return (
-    <div className="breadcrumbs text-sm ml-5 mt-0 bg-base-300 flex-grow-0 flex-shrink-0">
+    <div className="breadcrumbs text-sm mt-0 bg-base-300 flex-grow-0 flex-shrink-0 w-screen overflow-x-auto snap-x snap-proximity">
       <ul>
         <Crumb goToFolder={goToFolder} home={true} />
         {dir.map((item, index) => {
@@ -19,7 +18,7 @@ export default function FolderBreadCrumbs({ dir, goToFolder }) {
 
 function Crumb({ title, goToFolder, home = false }) {
   return (
-    <li className="flex flex-row gap-1">
+    <li className="flex flex-row gap-1 snap-start last:pr-5 first:pl-5">
       {!home ? (
         <>
           <CiFolderOn />
@@ -28,9 +27,7 @@ function Crumb({ title, goToFolder, home = false }) {
       ) : (
         <>
           <FaHome />
-          <a onClick={() => goToFolder("Home")}>
-            Home
-          </a>
+          <a onClick={() => goToFolder("Home")}>Home</a>
         </>
       )}
     </li>

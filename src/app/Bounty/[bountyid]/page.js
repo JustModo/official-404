@@ -1,4 +1,5 @@
 import LanguageTag from "@/components/Bounty/LanguageTag";
+import FieldTag from "@/components/Bounty/FieldTag";
 import StarRating from "@/components/Bounty/StarRating";
 import React from "react";
 
@@ -15,9 +16,7 @@ export default async function page({ params }) {
         you can use the CSS property word-break.
       </h1>
       <div className="flex flex-row w-full justify-start items-center mt-2 gap-2">
-        <div className="rounded-2xl w-auto h-auto bg-pink-900 text-sm font-bold items-center justify-center flex px-4 py-1.5">
-          DSA
-        </div>
+        <FieldTag tag={"dsa"} />
         <div className="inline-flex flex-wrap justify-start items-center gap-1 bg-secondary px-2 py-1 rounded-xl">
           <LanguageTag language={"python"} />
         </div>

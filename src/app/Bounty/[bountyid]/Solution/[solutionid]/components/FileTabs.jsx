@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { CiFileOn } from "react-icons/ci";
 import { CiFolderOn } from "react-icons/ci";
 
@@ -9,14 +9,14 @@ export default function FileTabs({
   selected,
   setSelected,
 }) {
-  // const [selected, setSelected] = useState("");
+  
   useEffect(() => {
     setSelected(data[0]?.title);
     setContent(data[0]?.content);
   }, [data]);
 
   return (
-    <div className="w-full h-8 flex flex-row flex-grow-0 flex-shrink-0">
+    <div className="w-screen h-8 flex flex-row flex-grow-0 flex-shrink-0 overflow-x-auto">
       {data.map((item, index) => (
         <Tab
           title={item?.title}

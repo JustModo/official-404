@@ -35,6 +35,17 @@
   }
 }
 
+.hsb {
+  /* For webkit browsers (Chrome, Safari) */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+
+  /* Add specific styles to handle webkit browsers */
+  &::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+}
+
 /* html, body {
   height: 100%;
   margin: 0;
