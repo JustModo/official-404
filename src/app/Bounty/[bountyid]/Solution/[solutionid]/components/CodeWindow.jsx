@@ -5,8 +5,8 @@ import FolderBreadCrumbs from "./FolderBreadCrumb";
 import FileTabs from "./FileTabs";
 import { getLanguageFromExt, examplefiledir } from "./util";
 
-export default function CodeWindow() {
-  const [data, setData] = useState(examplefiledir);
+export default function CodeWindow({ recievedData }) {
+  const [data, setData] = useState(recievedData);
   const [currentDir, setCurrentDir] = useState([]);
   const [currentDirFiles, setCurrentDirFiles] = useState([]);
 
@@ -70,7 +70,11 @@ export default function CodeWindow() {
 
   useEffect(() => {
     if (selected === "" || !selected) return;
-    setLanguage(getLanguageFromExt(selected.split(".")[1]));
+    setLanguage(
+      getLanguageFromExt(
+        selected.includes(".") ? selected.split(".")[1] : "Other"
+      )
+    );
   }, [selected]);
 
   return (

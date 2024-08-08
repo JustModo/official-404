@@ -4,7 +4,7 @@ export default function page() {
   return (
     <div className="w-full min-h-full flex justify-center items-end">
       <form className="w-full max-w-6xl flex flex-col gap-5 bg-base-100 p-10 my-10 sm:mx-10 mb-0 sm:mb-10 rounded-2xl">
-        <lable className="text-4xl sm:text-6xl font-extrabold mb-10 text-accent">
+        <lable className="text-4xl sm:text-6xl font-extrabold mb-10">
           Create Bounty
         </lable>
         <input

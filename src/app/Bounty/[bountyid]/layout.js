@@ -6,7 +6,7 @@ export default async function layout({ children, params }) {
   const { bountyid } = params;
 
   const data = await getBounty(bountyid);
-  // if (!data) return notFound();
+  if (!data) return notFound();
 
   return (
     <div className="w-full bg-base-100 h-full flex-grow flex flex-col">

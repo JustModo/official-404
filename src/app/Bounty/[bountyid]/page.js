@@ -11,32 +11,18 @@ export default async function page({ params }) {
   return (
     <div className="w-full p-5 overflow-y-auto overflow-x-hidden">
       <div className="flex flex-row">
-        <StarRating rating={3} id={data?.id} />
+        <StarRating rating={data?.average_rating} id={data?.id} />
       </div>
       <h1 className="text-2xl md:text-3xl font-bold break-words mt-5">
-        To make text wrap at any point, including breaking a word in the middle,
-        you can use the CSS property word-break.
+        {data?.title}
       </h1>
       <div className="flex flex-row w-full justify-start items-center mt-2 gap-2">
-        <FieldTag tag={"dsa"} />
+        <FieldTag tag={data?.field} />
         <div className="inline-flex flex-wrap justify-start items-center gap-1 bg-secondary px-2 py-1 rounded-xl">
           <LanguageTag language={"python"} />
         </div>
       </div>
-      <p className="text-base mt-5 break-words">
-        at ErrorBoundary (webpack-internal:/// (ssr)/./node_modules
-        /next/dist/client /components/error- boundary.js:159 :50) at
-        ErrorBoundary (webpack-internal:/// (ssr)/./node_modules
-        /next/dist/client /components/error- boundary.js:159 :50) at
-        ErrorBoundary (webpack-internal:/// (ssr)/./node_modules
-        /next/dist/client /components/error- boundary.js:159 :50) at
-        ErrorBoundary (webpack-internal:/// (ssr)/./node_modules
-        /next/dist/client /components/error- boundary.js:159 :50) at
-        ErrorBoundary (webpack-internal:/// (ssr)/./node_modules
-        /next/dist/client /components/error- boundary.js:159 :50) at
-        ErrorBoundary (webpack-internal:/// (ssr)/./node_modules
-        /next/dist/client /components/error- boundary.js:159 :50)
-      </p>
+      <p className="text-base mt-5 break-words">{data?.description}</p>
       <div className="flex flex-row gap-5 justify-center">
         <AddSolBtn id={params.bountyid} />
         <ViewSolBtn id={params.bountyid} />

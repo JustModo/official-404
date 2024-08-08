@@ -20,10 +20,10 @@ export default function BountyCard({ data, onClick, layoutId }) {
         layout
       >
         <motion.h1 layout>
-          <StarRating rating={3} id={data?.id} />
+          <StarRating rating={data?.average_rating} id={data?.id} />
         </motion.h1>
         <motion.h1
-          className="text-primary text-xl font-bold mt-2"
+          className="text-xl font-bold mt-2"
           style={{ lineHeight: "1.6rem" }}
         >
           {data?.title}

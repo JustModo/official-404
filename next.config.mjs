@@ -7,6 +7,16 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'club.modo-dev.com',
+        port: '',
+        pathname: '/profile-picture/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

@@ -3,8 +3,10 @@ import { motion } from "framer-motion";
 import LanguageTag from "@components/Bounty/LanguageTag";
 import StarRating from "@components/Bounty/StarRating";
 import { IoIosArrowBack } from "react-icons/io";
+import { useRouter } from "next/navigation";
 
 export default function ExpandedBountyCard({ data, onClick, layoutId }) {
+  const router = useRouter();
   return (
     <motion.div
       key={data?.id}
@@ -58,7 +60,9 @@ export default function ExpandedBountyCard({ data, onClick, layoutId }) {
         <motion.div className="sticky mt-3 bottom-0 flex justify-end self-stretch">
           <motion.div
             className="btn btn-accent"
-            onClick={(e) => e.preventDefault()}
+            onClick={() => {
+              router.push(`/Bounty/${data?.id || ""}`);
+            }}
           >
             View More
           </motion.div>
