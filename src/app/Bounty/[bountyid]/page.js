@@ -35,7 +35,7 @@ async function getBounty(id) {
   const formData = new FormData();
   formData.append("id", id);
   try {
-    const response = await fetch("https://club.modo-dev.com/get-bounty-by-id", {
+    const response = await fetch(`${process.env.BASE_URL}/get-bounty-by-id`, {
       method: "POST",
       body: formData,
     });

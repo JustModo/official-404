@@ -22,7 +22,7 @@ async function getSolution(id) {
   formData.append("solution_id", id);
   try {
     const response = await fetch(
-      "https://club.modo-dev.com/get-solution-by-id",
+      `${process.env.BASE_URL}/get-solution-by-id`,
       {
         method: "POST",
         body: formData,

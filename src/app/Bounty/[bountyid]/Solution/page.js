@@ -27,7 +27,7 @@ async function getSolList(id) {
   formData.append("bounty_id", id);
   try {
     const response = await fetch(
-      "https://club.modo-dev.com/get-solution-list",
+      `${process.env.BASE_URL}/get-solution-list`,
       {
         method: "POST",
         body: formData,

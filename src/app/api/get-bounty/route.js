@@ -32,7 +32,7 @@ export async function POST(req) {
 export const getBountyRequest = async (formData, headers) => {
   try {
     const response = await fetch(
-      "https://club.modo-dev.com/bounty-get-random",
+      `${process.env.BASE_URL}/bounty-get-random`,
       {
         method: "POST",
         body: formData,

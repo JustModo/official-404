@@ -43,7 +43,7 @@ export async function POST(req) {
 
 const loginRequest = async (formData) => {
   try {
-    const response = await fetch("https://club.modo-dev.com/login", {
+    const response = await fetch(`${process.env.BASE_URL}/login`, {
       method: "POST",
       body: formData,
     });

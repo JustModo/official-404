@@ -21,7 +21,7 @@ export const config = {
 
 async function checkAuth(headers) {
   try {
-    const response = await fetch("https://club.modo-dev.com/validate-login", {
+    const response = await fetch(`${process.env.BASE_URL}/validate-login`, {
       method: "POST",
       headers: {
         Cookie: headers.get("cookie") || "",

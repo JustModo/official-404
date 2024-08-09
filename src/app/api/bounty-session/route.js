@@ -32,7 +32,7 @@ export async function POST(req) {
 export const handleRequest = async (headers) => {
   try {
     const response = await fetch(
-      "https://club.modo-dev.com/create-session-for-bounty-get-random",
+      `${process.env.BASE_URL}/create-session-for-bounty-get-random`,
       {
         method: "POST",
         credentials: "include",
