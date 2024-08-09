@@ -1,11 +1,11 @@
 "use client";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { CiFileOn } from "react-icons/ci";
 import { CiFolderOn } from "react-icons/ci";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { GrPowerReset } from "react-icons/gr";
 
-export default function Page() {
+export default function Page({ params }) {
   const [files, setFiles] = useState([]);
 
   const handleFileChange = (event) => {
@@ -86,6 +86,10 @@ export default function Page() {
 
   const fileStructure = buildFileStructure(files);
 
+  const handleSubmit = async () => {
+    await submitSol(params.bountyid, files);
+  };
+
   return (
     <div className="p-4 space-y-4 h-full flex flex-col overflow-y-auto">
       <h1 className="flex text-3xl font-bold">Add Solution</h1>
@@ -95,7 +99,9 @@ export default function Page() {
             {renderFileTree(fileStructure)}
           </div>
           <div className="flex flex-row justify-center gap-5">
-            <div className="btn btn-accent">Submit</div>
+            <div className="btn btn-accent" onClick={handleSubmit}>
+              Submit
+            </div>
             <div
               className="btn btn-error btn-outline"
               onClick={() => setFiles([])}
@@ -123,4 +129,29 @@ export default function Page() {
       )}
     </div>
   );
+}
+
+async function submitSol(id, files) {
+  const formData = new FormData();
+  files.forEach((file) => {
+    formData.append("files", file);
+  });
+  formData.append("bounty_id", id);
+  try {
+    const response = await fetch(`/api/submit-solution`, {
+      method: "POST",
+      body: formData,
+    });
+
+    if (response.ok) {
+      console.log("Success");
+      return true;
+    }
+    const error = await response.text();
+    console.error(error);
+    return false;
+  } catch (error) {
+    console.error("Error:", error);
+    return false;
+  }
 }
