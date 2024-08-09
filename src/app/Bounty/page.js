@@ -32,6 +32,7 @@ export default function Bounty() {
                 >
                   <BountyCard
                     data={item}
+                    key={item.id}
                     layoutId={`item-${item.id}`}
                     onClick={() => {
                       setSelectedId(item.id);

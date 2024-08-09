@@ -18,7 +18,7 @@ export default async function layout({ children, params }) {
 
 async function getBounty(id) {
   const formData = new FormData();
-  formData.append("id", id);
+  formData.append("bounty_id", id);
   try {
     const response = await fetch(`${process.env.BASE_URL}/get-bounty-by-id`, {
       method: "POST",

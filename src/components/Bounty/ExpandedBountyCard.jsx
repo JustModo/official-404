@@ -4,6 +4,7 @@ import LanguageTag from "@components/Bounty/LanguageTag";
 import StarRating from "@components/Bounty/StarRating";
 import { IoIosArrowBack } from "react-icons/io";
 import { useRouter } from "next/navigation";
+import FieldTag from "./FieldTag";
 
 export default function ExpandedBountyCard({ data, onClick, layoutId }) {
   const router = useRouter();
@@ -27,7 +28,7 @@ export default function ExpandedBountyCard({ data, onClick, layoutId }) {
             <motion.div className="btn-link" onClick={onClick}>
               <IoIosArrowBack className="h-5 w-5" />
             </motion.div>
-            <StarRating rating={4} id={data?.id} />
+            <StarRating rating={data?.average_rating} id={data?.id} />
           </motion.div>
           <motion.h1
             className="text-3xl font-bold mt-10"
@@ -40,9 +41,7 @@ export default function ExpandedBountyCard({ data, onClick, layoutId }) {
             className="flex flex-row w-full justify-start items-center mt-5"
             layout
           >
-            <motion.div className="rounded-2xl w-auto h-auto bg-pink-900 text-sm font-bold items-center justify-center flex px-4 py-1.5">
-              DSA
-            </motion.div>
+            <FieldTag tag={data?.field} />
           </motion.div>
           <motion.p
             className="text-base text-justify mt-10"
@@ -54,7 +53,10 @@ export default function ExpandedBountyCard({ data, onClick, layoutId }) {
             className="inline-flex gap-2 bg-secondary px-2 py-1 rounded-xl mt-5"
             layout
           >
-            <LanguageTag language={data?.language} />
+            {data?.languages &&
+              data?.languages
+                .split(",")
+                .map((language,index) => <LanguageTag language={language} key={index}/>)}
           </motion.div>
         </motion.div>
         <motion.div className="sticky mt-3 bottom-0 flex justify-end self-stretch">

@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import LanguageTag from "@components/Bounty/LanguageTag";
 import StarRating from "@components/Bounty/StarRating";
+import FieldTag from "./FieldTag";
 
 export default function BountyCard({ data, onClick, layoutId }) {
   return (
@@ -32,9 +33,7 @@ export default function BountyCard({ data, onClick, layoutId }) {
           className="flex flex-row w-full justify-start items-center mt-2"
           layout
         >
-          <motion.div className="rounded-2xl w-auto h-auto bg-pink-900 text-sm font-bold items-center justify-center flex px-4 py-1.5">
-            DSA
-          </motion.div>
+          <FieldTag tag={data?.field} />
         </motion.div>
         <motion.p
           className="text-base line-clamp-3 text-justify mt-2"
@@ -43,10 +42,15 @@ export default function BountyCard({ data, onClick, layoutId }) {
           {data?.description}
         </motion.p>
         <motion.div
-          className="inline-flex flex-wrap justify-start items-center mt-3 gap-1 bg-secondary px-2 py-1 rounded-xl"
+          className="inline-flex flex-wrap justify-start items-center mt-5 gap-1 bg-secondary px-2 py-1 rounded-xl"
           layout
         >
-          <LanguageTag language={data?.language} />
+          {data?.languages &&
+            data?.languages
+              .split(",")
+              .map((language, index) => (
+                <LanguageTag language={language} key={index} />
+              ))}
         </motion.div>
       </motion.div>
     </motion.div>

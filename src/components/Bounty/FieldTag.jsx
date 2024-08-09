@@ -3,6 +3,7 @@ import React from "react";
 export default function FieldTag({ tag }) {
   const fieldObj = {
     dsa: "DSA",
+    other: "Other",
   };
 
   return (

@@ -12,6 +12,8 @@ import JS from "@assets/Logos/javascript.svg";
 import PYTHON from "@assets/Logos/python.svg";
 import RUBY from "@assets/Logos/ruby.svg";
 import RUST from "@assets/Logos/rust.svg";
+import ANY from "@assets/Logos/any.svg";
+import OTHER from "@assets/Logos/other.svg";
 
 export default function LanguageTag({ language }) {
   const logoObj = {
@@ -26,21 +28,23 @@ export default function LanguageTag({ language }) {
     python: PYTHON,
     ruby: RUBY,
     rust: RUST,
+    "any": ANY,
+    other: OTHER,
   };
 
-  const logoStyles = {
-    c: { title: "C", style: "bg-blue-600 text-white" },
-    cpp: { title: "C++", style: "bg-blue-600 text-white" },
-    csharp: { title: "C#", style: "bg-purple-500 text-white" },
-    css: { title: "CSS", style: "bg-blue-400 text-white" },
-    go: { title: "Go", style: "bg-teal-400 text-white" },
-    html: { title: "HTML", style: "bg-orange-600 text-white" },
-    java: { title: "Java", style: "bg-orange-500 text-white" },
-    js: { title: "JavaScript", style: "bg-yellow-400 text-black" },
-    python: { title: "Python", style: "bg-blue-800 text-yellow-300" },
-    ruby: { title: "Ruby", style: "bg-red-700 text-white" },
-    rust: { title: "Rust", style: "bg-amber-800 text-white" },
-  };
+  // const logoStyles = {
+  //   c: { title: "C", style: "bg-blue-600 text-white" },
+  //   cpp: { title: "C++", style: "bg-blue-600 text-white" },
+  //   csharp: { title: "C#", style: "bg-purple-500 text-white" },
+  //   css: { title: "CSS", style: "bg-blue-400 text-white" },
+  //   go: { title: "Go", style: "bg-teal-400 text-white" },
+  //   html: { title: "HTML", style: "bg-orange-600 text-white" },
+  //   java: { title: "Java", style: "bg-orange-500 text-white" },
+  //   js: { title: "JavaScript", style: "bg-yellow-400 text-black" },
+  //   python: { title: "Python", style: "bg-blue-800 text-yellow-300" },
+  //   ruby: { title: "Ruby", style: "bg-red-700 text-white" },
+  //   rust: { title: "Rust", style: "bg-amber-800 text-white" },
+  // };
 
   return (
     <div

@@ -3,12 +3,13 @@ import SolutionCard from "./SolutionCard";
 
 export default async function page({ params }) {
   const data = await getSolList(params.bountyid);
+  console.log(data);
   return (
-    <div className="w-full p-5">
-      <h1 className="font-bold text-3xl ml-1">Solutions</h1>
-      <div className="stripecontainer w-full flex flex-col mt-5 overflow-hidden shadow-2xl rounded-lg">
-        {data &&
-          data?.map((item) => (
+    <div className="w-full p-5 flex flex-col flex-grow">
+      <h1 className="font-bold text-3xl ml-1 flex-shrink-0">Solutions</h1>
+      {data && data.length > 0 ? (
+        <div className="stripecontainer w-full flex flex-col mt-5 overflow-hidden shadow-2xl rounded-lg">
+          {data.map((item) => (
             <SolutionCard
               key={item?.solution_id}
               id={item?.solution_id}
@@ -17,7 +18,12 @@ export default async function page({ params }) {
               uid={item?.creator_id}
             />
           ))}
-      </div>
+        </div>
+      ) : (
+        <div className="flex justify-center items-center flex-grow">
+          <h1 className="self-center text-xl">No Solutions... Yet</h1>
+        </div>
+      )}
     </div>
   );
 }
@@ -26,13 +32,10 @@ async function getSolList(id) {
   const formData = new FormData();
   formData.append("bounty_id", id);
   try {
-    const response = await fetch(
-      `${process.env.BASE_URL}/get-solution-list`,
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
+    const response = await fetch(`${process.env.BASE_URL}/get-solution-list`, {
+      method: "POST",
+      body: formData,
+    });
 
     if (response.ok) {
       return response.json();
