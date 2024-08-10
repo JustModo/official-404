@@ -34,7 +34,7 @@ async function getSolList(id) {
     const response = await fetch(`${process.env.BASE_URL}/get-solution-list`, {
       method: "POST",
       body: formData,
-      cache: "no-store",
+      next: { revalidate: 60 },
     });
 
     if (response.ok) {

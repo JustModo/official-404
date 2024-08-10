@@ -1,13 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import InfoModal from "@components/InfoModal";
+import { useModal } from "@/components/ModalContext";
 
 export default function Form() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [title, setTitle] = useState("");
-  const [open, setOpen] = useState(false);
+
+  const { openModal } = useModal();
 
   const handleClick = (formData) => {
     setLoading(true);
@@ -28,14 +28,14 @@ export default function Form() {
         if (res.status === 502 || res.status === 1033)
           errorMessage = "Server Error";
         else errorMessage = errorData.message;
-        setTitle(errorMessage);
-        setOpen(true);
+        openModal(errorMessage);
         throw new Error(errorMessage);
       }
 
       setLoading(false);
       router.push("/Profile");
       router.refresh();
+      openModal("Logged In!");
     } catch (err) {
       setLoading(false);
       console.error(err);
@@ -64,7 +64,6 @@ export default function Form() {
           "Login"
         )}
       </button>
-      <InfoModal title={title} onClose={() => setOpen(false)} open={open} />
     </form>
   );
 }

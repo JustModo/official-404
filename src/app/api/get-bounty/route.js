@@ -31,17 +31,14 @@ export async function POST(req) {
 
 export const getBountyRequest = async (formData, headers) => {
   try {
-    const response = await fetch(
-      `${process.env.BASE_URL}/bounty-get-random`,
-      {
-        method: "POST",
-        body: formData,
-        headers: {
-          Cookie: headers.get("cookie"),
-          credentials: "include",
-        },
-      }
-    );
+    const response = await fetch(`${process.env.BASE_URL}/bounty-get-random`, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Cookie: headers.get("cookie"),
+        credentials: "include",
+      },
+    });
     return response;
   } catch (err) {
     console.error(err);

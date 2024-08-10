@@ -4,9 +4,14 @@ import { CiFileOn } from "react-icons/ci";
 import { CiFolderOn } from "react-icons/ci";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { GrPowerReset } from "react-icons/gr";
+import { useRouter } from "next/navigation";
+import { useModal } from "@/components/ModalContext";
 
 export default function Page({ params }) {
   const [files, setFiles] = useState([]);
+
+  const { openModal } = useModal();
+  const router = useRouter();
 
   const handleFileChange = (event) => {
     const files = Array.from(event.target.files);
@@ -16,8 +21,8 @@ export default function Page({ params }) {
       total += file.size;
     });
     if (total > 5 * 1024 * 1024) {
+      openModal("Too Big! File Limit: 5MB");
       setFiles([]);
-      console.error("Too Big");
     } else {
       setFiles(files);
     }
@@ -87,7 +92,7 @@ export default function Page({ params }) {
   const fileStructure = buildFileStructure(files);
 
   const handleSubmit = async () => {
-    await submitSol(params.bountyid, files);
+    await submitSol(params.bountyid, files, router, openModal);
   };
 
   return (
@@ -131,7 +136,7 @@ export default function Page({ params }) {
   );
 }
 
-async function submitSol(id, files) {
+async function submitSol(id, files, router, openModal) {
   const formData = new FormData();
   files.forEach((file) => {
     formData.append("files", file);
@@ -144,10 +149,12 @@ async function submitSol(id, files) {
     });
 
     if (response.ok) {
-      console.log("Success");
+      openModal("Submitted!");
+      router.push(`/Bounty/${id}`);
       return true;
     }
-    const error = await response.text();
+    const error = await response.json();
+    openModal(error.message);
     console.error(error);
     return false;
   } catch (error) {

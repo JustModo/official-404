@@ -3,6 +3,7 @@ import NavBar from "@/components/NavBar";
 import CanvasEffect from "@/components/CanvasEffect.jsx";
 import GradientBG from "@/components/GradientBG";
 import "@styles/globals.css";
+import { ModalProvider } from "@components/ModalContext";
 
 export const metadata = {
   title: "Club 404",
@@ -21,7 +22,7 @@ export default function RootLayout({ children }) {
             className="mainwindow relative w-full h-full overflow-y-auto overflow-x-hidden snap-y snap-proximity"
           >
             {/* <GradientBG /> */}
-            {children}
+            <ModalProvider>{children}</ModalProvider>
           </div>
         </div>
       </body>

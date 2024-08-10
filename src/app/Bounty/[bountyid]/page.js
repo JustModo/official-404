@@ -38,6 +38,7 @@ async function getBounty(id) {
     const response = await fetch(`${process.env.BASE_URL}/get-bounty-by-id`, {
       method: "POST",
       body: formData,
+      next: { revalidate: 60 },
     });
 
     if (response.ok) {

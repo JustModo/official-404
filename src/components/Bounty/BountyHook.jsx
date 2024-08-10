@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useModal } from "@/components/ModalContext";
 
 export default function BountyHook() {
   const [data, setData] = useState([]);
@@ -10,6 +11,12 @@ export default function BountyHook() {
   const pageRef = useRef(page);
   const dataRef = useRef(data);
   const initialFetchRef = useRef(false);
+
+  const { openModal } = useModal();
+
+  useEffect(() => {
+    if (connectionErr) openModal("Server Error :/");
+  }, [connectionErr]);
 
   useEffect(() => {
     pageRef.current = page;
