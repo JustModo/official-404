@@ -28,7 +28,11 @@ export default function ExpandedBountyCard({ data, onClick, layoutId }) {
             <motion.div className="btn-link" onClick={onClick}>
               <IoIosArrowBack className="h-5 w-5" />
             </motion.div>
-            <StarRating rating={data?.average_rating} id={data?.id} />
+            {data?.average_rating > 0 ? (
+              <StarRating rating={data?.average_rating} id={data?.id} />
+            ) : (
+              <h1 style={{ lineHeight: 1 }}>Not Rated</h1>
+            )}
           </motion.div>
           <motion.h1
             className="text-3xl font-bold mt-10"
@@ -56,7 +60,9 @@ export default function ExpandedBountyCard({ data, onClick, layoutId }) {
             {data?.languages &&
               data?.languages
                 .split(",")
-                .map((language,index) => <LanguageTag language={language} key={index}/>)}
+                .map((language, index) => (
+                  <LanguageTag language={language} key={index} />
+                ))}
           </motion.div>
         </motion.div>
         <motion.div className="sticky mt-3 bottom-0 flex justify-end self-stretch">

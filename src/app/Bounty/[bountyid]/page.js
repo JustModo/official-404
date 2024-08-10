@@ -13,7 +13,7 @@ export default async function page({ params }) {
       <div className="flex flex-row">
         <StarRating rating={data?.average_rating} id={data?.id} />
       </div>
-      <h1 className="text-2xl md:text-3xl font-bold break-words mt-5">
+      <h1 className="text-2xl md:text-3xl font-bold break-words">
         {data?.title}
       </h1>
       <div className="flex flex-row w-full justify-start items-center mt-2 gap-2">
@@ -41,7 +41,7 @@ async function getBounty(id) {
     });
 
     if (response.ok) {
-      return response.json();
+      return await response.json();
     }
     const error = await response.text();
     console.log(error);

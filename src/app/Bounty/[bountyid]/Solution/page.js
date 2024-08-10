@@ -38,7 +38,7 @@ async function getSolList(id) {
     });
 
     if (response.ok) {
-      return response.json();
+      return await response.json();
     }
     const error = await response.text();
     console.log(error);
