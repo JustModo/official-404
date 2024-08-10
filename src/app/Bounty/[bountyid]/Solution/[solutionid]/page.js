@@ -21,14 +21,11 @@ async function getSolution(id) {
   const formData = new FormData();
   formData.append("solution_id", id);
   try {
-    const response = await fetch(
-      `${process.env.BASE_URL}/get-solution-by-id`,
-      {
-        method: "POST",
-        body: formData,
-        cache: "no-store",
-      }
-    );
+    const response = await fetch(`${process.env.BASE_URL}/get-solution-by-id`, {
+      method: "POST",
+      body: formData,
+      cache: "no-store",
+    });
 
     if (response.ok) {
       return response.json();

@@ -3,7 +3,6 @@ import SolutionCard from "./SolutionCard";
 
 export default async function page({ params }) {
   const data = await getSolList(params.bountyid);
-  console.log(data);
   return (
     <div className="w-full p-5 flex flex-col flex-grow">
       <h1 className="font-bold text-3xl ml-1 flex-shrink-0">Solutions</h1>
@@ -35,6 +34,7 @@ async function getSolList(id) {
     const response = await fetch(`${process.env.BASE_URL}/get-solution-list`, {
       method: "POST",
       body: formData,
+      cache: "no-store",
     });
 
     if (response.ok) {

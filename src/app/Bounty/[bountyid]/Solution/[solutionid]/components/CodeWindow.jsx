@@ -89,12 +89,18 @@ export default function CodeWindow({ recievedData }) {
             setSelected={setSelected}
             selected={selected}
           />
-          <Editor
-            language={language}
-            value={content}
-            options={{ readOnly: true }}
-            theme="vs-dark"
-          />
+          {content !== null ? (
+            <Editor
+              language={language}
+              value={content || ""}
+              options={{ readOnly: true }}
+              theme="vs-dark"
+            />
+          ) : (
+            <div className="flex flex-grow justify-center items-center">
+              <h1>Cannot View This File Format :/</h1>
+            </div>
+          )}
         </>
       )}
     </div>

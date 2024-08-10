@@ -9,7 +9,6 @@ export default function FileTabs({
   selected,
   setSelected,
 }) {
-  
   useEffect(() => {
     setSelected(data[0]?.title);
     setContent(data[0]?.content);
@@ -54,7 +53,11 @@ function Tab({
           setPath(title);
         } else {
           setSelected(title);
-          setContent(content);
+          if (content === "<NOT-TEXT>") {
+            setContent(null);
+          } else {
+            setContent(content);
+          }
         }
       }}
     >

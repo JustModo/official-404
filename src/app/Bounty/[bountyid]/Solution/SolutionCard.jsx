@@ -20,7 +20,7 @@ export default function SolutionCard({ id, likes, author, uid }) {
         <div className="flex items-center justify-center h-10 w-10 rounded-full overflow-hidden bg-neutral">
           <Image
             // src={neutralImage}
-            src={`${process.env.BASE_URL}/profile-picture/${author}`}
+            src={`/api/get-pfp/${author}`}
             alt="Neutral Background"
             width={40}
             height={40}
