@@ -34,7 +34,8 @@ export default function Form() {
       }
 
       setLoading(false);
-      router.back();
+      router.push("/Profile");
+      router.refresh();
     } catch (err) {
       setLoading(false);
       console.error(err);

@@ -32,7 +32,8 @@ export default function Form() {
         throw new Error(errorMessage);
       }
       setLoading(false);
-      router.back();
+      router.push("/Profile");
+      router.refresh();
     } catch (err) {
       setLoading(false);
       console.error(err);

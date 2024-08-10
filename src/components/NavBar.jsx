@@ -1,8 +1,13 @@
 import React from "react";
 import "@styles/globals.css";
 import Link from "next/link";
+import { cookies } from "next/headers";
 
-export default function NavBar() {
+export default async function NavBar() {
+  const cookieStore = cookies();
+  const sessionCookie = cookieStore.get("session");
+  const isAuthenticated = await checkAuth(sessionCookie);
+  
   return (
     <div className="navbar bg-neutral text-text z-20">
       <div className="flex-1">
@@ -27,7 +32,7 @@ export default function NavBar() {
           </li>
           <li className="hidden md:inline-block">
             <Link href="/Auth/Login" className="text-text">
-              Profile
+              {isAuthenticated ? "Profile" : "Login"}
             </Link>
           </li>
           <li className="md:hidden dropdown">
@@ -51,7 +56,7 @@ export default function NavBar() {
                 </li>
                 <li>
                   <Link href="/Auth/Login" className="text-text">
-                    Profile
+                    Profilee
                   </Link>
                 </li>
               </ul>
@@ -61,4 +66,25 @@ export default function NavBar() {
       </div>
     </div>
   );
+}
+
+async function checkAuth(cookie) {
+  try {
+    const response = await fetch(`${process.env.BASE_URL}/validate-login`, {
+      method: "POST",
+      headers: {
+        Cookie: `${cookie?.name}=${cookie?.value}`,
+      },
+    });
+
+    if (response.ok) {
+      return true;
+    }
+    const error = await response.text();
+    console.error(error);
+    return false;
+  } catch (error) {
+    console.error("Error checking authentication:", error);
+    return false;
+  }
 }

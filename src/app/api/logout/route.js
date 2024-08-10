@@ -2,9 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
-    const formData = await req.formData();
-
-    const response = await loginRequest(formData);
+    const response = await handleLogout(req.headers);
 
     if (!response.ok) {
       const errorData = await response.text();
@@ -16,14 +14,6 @@ export async function POST(req) {
     }
 
     const authCookie = response.headers.get("set-cookie");
-    // console.log(authCookie);
-
-    if (!authCookie) {
-      return NextResponse.json(
-        { message: "Not Authenticated" },
-        { status: 500 }
-      );
-    }
 
     return NextResponse.json(
       { message: "Login successful" },
@@ -40,11 +30,14 @@ export async function POST(req) {
   }
 }
 
-const loginRequest = async (formData) => {
+const handleLogout = async (headers) => {
   try {
-    const response = await fetch(`${process.env.BASE_URL}/login`, {
+    const response = await fetch(`${process.env.BASE_URL}/logout`, {
       method: "POST",
-      body: formData,
+      headers: {
+        Cookie: headers.get("cookie"),
+        credentials: "include",
+      },
     });
     return response;
   } catch (err) {
