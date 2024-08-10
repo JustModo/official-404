@@ -24,7 +24,7 @@ async function getSolution(id) {
     const response = await fetch(`${process.env.BASE_URL}/get-solution-by-id`, {
       method: "POST",
       body: formData,
-      cache: "no-store",
+      next: { revalidate: 60 },
     });
 
     if (response.ok) {

@@ -23,7 +23,6 @@ async function getBounty(id) {
     const response = await fetch(`${process.env.BASE_URL}/get-bounty-by-id`, {
       method: "POST",
       body: formData,
-      cache: "no-store",
     });
 
     return response.ok;

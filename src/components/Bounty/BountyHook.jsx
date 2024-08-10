@@ -34,8 +34,9 @@ export default function BountyHook() {
       if (!hasSession) {
         const success = await getSession();
         if (!success) {
-          setConnectionErr(true);
-          return;
+          // setConnectionErr(true);
+          // return;
+          openModal("Server Error: Running Offline Mode")
         }
       }
 
@@ -114,6 +115,7 @@ export default function BountyHook() {
     }
   };
 
+  // Intial Fetch For Data
   useEffect(() => {
     if (!initialFetchRef.current) {
       async function call() {
@@ -127,6 +129,7 @@ export default function BountyHook() {
     };
   }, []);
 
+  // Fetch when scrolled to end
   useEffect(() => {
     const handleScroll = () => {
       if (

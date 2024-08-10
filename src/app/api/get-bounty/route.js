@@ -38,6 +38,7 @@ export const getBountyRequest = async (formData, headers) => {
         Cookie: headers.get("cookie"),
         credentials: "include",
       },
+      cache: "force-cache",
     });
     return response;
   } catch (err) {
