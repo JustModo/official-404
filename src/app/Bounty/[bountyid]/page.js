@@ -11,15 +11,24 @@ export default async function page({ params }) {
   return (
     <div className="w-full p-5 overflow-y-auto overflow-x-hidden">
       <div className="flex flex-row">
-        <StarRating rating={data?.average_rating} id={data?.id} />
+        {data?.average_rating > 0 ? (
+          <StarRating rating={data?.average_rating} id={data?.id} />
+        ) : (
+          <h1 style={{ lineHeight: 1 }}>Not Rated</h1>
+        )}
       </div>
-      <h1 className="text-2xl md:text-3xl font-bold break-words">
+      <h1 className="text-2xl md:text-3xl font-bold break-words mt-2">
         {data?.title}
       </h1>
       <div className="flex flex-row w-full justify-start items-center mt-2 gap-2">
         <FieldTag tag={data?.field} />
         <div className="inline-flex flex-wrap justify-start items-center gap-1 bg-secondary px-2 py-1 rounded-xl">
-          <LanguageTag language={"python"} />
+          {data?.languages &&
+            data?.languages
+              .split(",")
+              .map((language, index) => (
+                <LanguageTag language={language} key={index} />
+              ))}
         </div>
       </div>
       <p className="text-base mt-5 break-words">{data?.description}</p>

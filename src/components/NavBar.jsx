@@ -7,7 +7,7 @@ export default async function NavBar() {
   const cookieStore = cookies();
   const sessionCookie = cookieStore.get("session");
   const isAuthenticated = await checkAuth(sessionCookie);
-  
+
   return (
     <div className="navbar bg-neutral text-text z-20">
       <div className="flex-1">
@@ -84,7 +84,7 @@ async function checkAuth(cookie) {
     console.error(error);
     return false;
   } catch (error) {
-    console.error("Error checking authentication:", error);
+    // console.error("Error checking authentication");
     return false;
   }
 }

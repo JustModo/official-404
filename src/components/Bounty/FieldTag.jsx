@@ -3,6 +3,9 @@ import React from "react";
 export default function FieldTag({ tag }) {
   const fieldObj = {
     dsa: "DSA",
+    ai: "AI",
+    web: "Web",
+    app: "App",
     other: "Other",
   };
 

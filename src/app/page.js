@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center h-full w-full relative overflow-hidden">
-      <h1 className="text-5xl font-bold text-white">Welcome to Next.js!</h1>
+      <h1 className="text-5xl font-bold text-white">Welcome to CLUB404!</h1>
       {/* <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

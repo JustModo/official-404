@@ -1,75 +1,163 @@
-import React from "react";
+"use client";
+import { useModal } from "@/components/ModalContext";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import { langObj, fieldObj } from "./util";
 
 export default function page() {
+  const { openModal } = useModal();
+  const router = useRouter();
+
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [field, setField] = useState("");
+
+  const [selectedLanguages, setSelectedLanguages] = useState([]);
+
+  const handleLanguageChange = (name, isChecked) => {
+    if (isChecked) {
+      setSelectedLanguages((prev) => [...prev, name]);
+    } else {
+      setSelectedLanguages((prev) =>
+        prev.filter((language) => language !== name)
+      );
+    }
+  };
+
   return (
     <div className="w-full min-h-full flex justify-center items-end">
-      <form className="w-full max-w-6xl flex flex-col gap-5 bg-base-100 p-10 my-10 sm:mx-10 mb-0 sm:mb-10 rounded-2xl">
-        <lable className="text-4xl sm:text-6xl font-extrabold mb-10">
+      <div className="w-full max-w-6xl flex flex-col gap-5 bg-base-100 p-10 my-10 sm:mx-10 mb-0 sm:mb-10 rounded-2xl">
+        <label className="text-4xl sm:text-6xl font-extrabold mb-10">
           Create Bounty
-        </lable>
+        </label>
         <input
           type="text"
           placeholder="Title"
           name="title"
-          class="input input-bordered w-full"
+          className="input input-bordered w-full"
+          onChange={(e) => setTitle(e.target.value)}
+          value={title}
+          required
         />
         <textarea
           placeholder="Description"
           name="description"
-          class="textarea textarea-bordered textarea-lg w-full h-96 text-sm"
-        ></textarea>
-        <div className="py-4 flex flex-col sm:flex-row gap-5 justify-around items-center w-full">
-          <div className="form-control w-full">
+          className="textarea textarea-bordered textarea-lg w-full h-96 text-sm"
+          onChange={(e) => setDescription(e.target.value)}
+          value={description}
+          required
+        />
+        <div className="py-4 flex flex-col">
+          <div className="w-full">
             <label className="font-bold px-1 text-xl">Language</label>
-            <LanguageCheck name={"C"} />
-            <LanguageCheck name={"C++"} />
-            <LanguageCheck name={"C#"} />
-            <LanguageCheck name={"CSS"} />
-            <LanguageCheck name={"HTML"} />
-            <LanguageCheck name={"Javascript"} />
-            <LanguageCheck name={"Java"} />
-            <LanguageCheck name={"Python"} />
-            <LanguageCheck name={"Ruby"} />
-            <LanguageCheck name={"Rust"} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 mt-2">
+              {langObj.map((item) => (
+                <LanguageCheck
+                  key={item[0]}
+                  name={item}
+                  onLanguageChange={handleLanguageChange}
+                />
+              ))}
+            </div>
           </div>
-          <div className="form-control w-full">
+
+          <div className="w-full mt-10">
             <label className="font-bold px-1 text-xl">Field</label>
-            <FieldCheck name={"C"} />
-            <FieldCheck name={"C++"} />
-            <FieldCheck name={"C#"} />
-            <FieldCheck name={"CSS"} />
-            <FieldCheck name={"HTML"} />
-            <FieldCheck name={"Javascript"} />
-            <FieldCheck name={"Java"} />
-            <FieldCheck name={"Python"} />
-            <FieldCheck name={"Ruby"} />
-            <FieldCheck name={"Rust"} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 mt-2">
+              {fieldObj.map((item) => (
+                <FieldCheck key={item[0]} name={item} fieldChange={setField} />
+              ))}
+            </div>
           </div>
         </div>
-        <div className="btn btn-accent max-w-xs self-end">Submit</div>
-      </form>
+        <div
+          className="btn btn-accent max-w-xs self-end"
+          onClick={() =>
+            submitBounty(
+              title,
+              description,
+              field,
+              selectedLanguages,
+              router,
+              openModal
+            )
+          }
+        >
+          Submit
+        </div>
+      </div>
     </div>
   );
 }
 
-function LanguageCheck({ name }) {
+function LanguageCheck({ name, onLanguageChange }) {
+  const handleChange = (event) => {
+    onLanguageChange(name[0], event.target.checked);
+  };
+
   return (
-    <label className="cursor-pointer label">
-      <span className="label-text">{name}</span>
-      <input type="checkbox" className="checkbox checkbox-accent checkbox-sm" />
+    <label className="cursor-pointer label mx-4">
+      <span className="label-text">{name[1]}</span>
+      <input
+        type="checkbox"
+        className="checkbox checkbox-accent checkbox-sm"
+        onChange={handleChange}
+        required
+      />
     </label>
   );
 }
 
-function FieldCheck({ name }) {
+function FieldCheck({ name, fieldChange }) {
   return (
-    <label className="cursor-pointer label">
-      <span className="label-text">{name}</span>
+    <label className="cursor-pointer label mx-4">
+      <span className="label-text">{name[1]}</span>
       <input
         type="radio"
-        name="radiof"
+        name="radio"
         className="radio radio-accent radio-sm"
+        value={name[0]}
+        onChange={(event) => fieldChange(event.target.value)}
       />
     </label>
   );
+}
+
+async function submitBounty(
+  title,
+  description,
+  field,
+  selectedLanguages,
+  router,
+  openModal
+) {
+  try {
+    if (!title || !description || !field || !selectedLanguages) return;
+    const formData = new FormData();
+    const languages = selectedLanguages.join(",");
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("field", field);
+    formData.append("langauges", languages);
+    console.log(selectedLanguages.join(","), field);
+
+    const response = await fetch(`/api/create-bounty`, {
+      method: "POST",
+      body: formData,
+      cache: "no-store",
+    });
+
+    if (response.ok) {
+      openModal("Submitted!");
+      router.push(`/Bounty/${id}`);
+      return true;
+    }
+    const error = await response.json();
+    openModal(error.message);
+    console.error(error);
+    return false;
+  } catch (error) {
+    console.error("Error:", error);
+    return false;
+  }
 }
