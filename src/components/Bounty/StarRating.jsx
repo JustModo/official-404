@@ -1,7 +1,4 @@
 import React from "react";
-import LStar from "@assets/Left_half_star.svg";
-import RStar from "@assets/Right_half_star.svg";
-import Image from "next/image";
 
 export default function StarRating({ rating = 0 }) {
   return (

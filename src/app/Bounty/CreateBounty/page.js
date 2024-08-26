@@ -139,7 +139,6 @@ async function submitBounty(
     formData.append("description", description);
     formData.append("field", field);
     formData.append("langauges", languages);
-    console.log(selectedLanguages.join(","), field);
 
     const response = await fetch(`/api/create-bounty`, {
       method: "POST",
@@ -149,7 +148,7 @@ async function submitBounty(
 
     if (response.ok) {
       openModal("Submitted!");
-      router.push(`/Bounty/${id}`);
+      router.push(`/Bounty`);
       return true;
     }
     const error = await response.json();

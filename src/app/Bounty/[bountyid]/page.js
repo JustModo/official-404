@@ -3,38 +3,48 @@ import FieldTag from "@/components/Bounty/FieldTag";
 import StarRating from "@/components/Bounty/StarRating";
 import AddSolBtn from "@/components/Bounty/AddSolBtn";
 import ViewSolBtn from "@/components/Bounty/ViewSolBtn";
+import RatingComponent from "@components/Bounty/RatingComponent";
 import React from "react";
 
 export default async function page({ params }) {
   const data = await getBounty(params.bountyid);
 
   return (
-    <div className="w-full p-5 overflow-y-auto overflow-x-hidden">
-      <div className="flex flex-row">
-        {data?.average_rating > 0 ? (
-          <StarRating rating={data?.average_rating} id={data?.id} />
-        ) : (
-          <h1 style={{ lineHeight: 1 }}>Not Rated</h1>
-        )}
-      </div>
-      <h1 className="text-2xl md:text-3xl font-bold break-words mt-2">
-        {data?.title}
-      </h1>
-      <div className="flex flex-row w-full justify-start items-center mt-2 gap-2">
-        <FieldTag tag={data?.field} />
-        <div className="inline-flex flex-wrap justify-start items-center gap-1 bg-secondary px-2 py-1 rounded-xl">
-          {data?.languages &&
-            data?.languages
-              .split(",")
-              .map((language, index) => (
-                <LanguageTag language={language} key={index} />
-              ))}
+    <div className="w-full p-5 overflow-y-auto overflow-x-hidden flex flex-col flex-grow justify-between">
+      <div>
+        <div className="flex flex-row">
+          {data?.average_rating > 0 ? (
+            <StarRating rating={data?.average_rating} id={data?.id} />
+          ) : (
+            <h1 style={{ lineHeight: 1 }}>Not Rated</h1>
+          )}
         </div>
+        <h1 className="text-2xl md:text-3xl font-bold break-words mt-2">
+          {data?.title}
+        </h1>
+        <div className="flex flex-row w-full justify-start items-center my-6 gap-2">
+          <FieldTag tag={data?.field} />
+          <div className="inline-flex flex-wrap justify-start items-center gap-1 bg-secondary px-2 py-1 rounded-xl">
+            {data?.languages &&
+              data?.languages
+                .split(",")
+                .map((language, index) => (
+                  <LanguageTag language={language} key={index} />
+                ))}
+          </div>
+        </div>
+        <p className="text-base break-words">{data?.description}</p>
       </div>
-      <p className="text-base mt-5 break-words">{data?.description}</p>
-      <div className="flex flex-row gap-5 justify-center">
-        <AddSolBtn id={params.bountyid} />
-        <ViewSolBtn id={params.bountyid} />
+
+      <div className="flex flex-col md:flex-row gap-5 pb-4 justify-between items-baseline">
+        <div className="flex flex-row gap-2 font-bold text-white items-center">
+          <label>Rate it:</label>
+          <RatingComponent value={data?.users_rating} />
+        </div>
+        <div className="flex flex-row gap-5">
+          <AddSolBtn id={params.bountyid} />
+          <ViewSolBtn id={params.bountyid} />
+        </div>
       </div>
     </div>
   );
