@@ -56,7 +56,7 @@ export default async function NavBar() {
                 </li>
                 <li>
                   <Link href="/Auth/Login" className="text-text">
-                    Profilee
+                    Profile
                   </Link>
                 </li>
               </ul>

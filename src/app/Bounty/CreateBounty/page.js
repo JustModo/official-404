@@ -138,7 +138,7 @@ async function submitBounty(
     formData.append("title", title);
     formData.append("description", description);
     formData.append("field", field);
-    formData.append("langauges", languages);
+    formData.append("languages", languages);
 
     const response = await fetch(`/api/create-bounty`, {
       method: "POST",

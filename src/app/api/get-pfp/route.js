@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
 
-export async function GET({ params }) {
+export async function GET(request) {
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+  console.log(id);
   try {
     const response = await fetch(
-      `${process.env.BASE_URL}/profile-picture/${params.id}`
+      `${process.env.BASE_URL}/profile-picture/${id}`
     );
 
     if (!response.ok) {

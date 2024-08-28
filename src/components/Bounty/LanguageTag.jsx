@@ -28,7 +28,7 @@ export default function LanguageTag({ language }) {
     python: PYTHON,
     ruby: RUBY,
     rust: RUST,
-    "any": ANY,
+    any: ANY,
     other: OTHER,
   };
 
@@ -53,8 +53,8 @@ export default function LanguageTag({ language }) {
       <Image
         src={logoObj[language]}
         alt={language}
-        objectFit="contain"
         draggable={false}
+        className="object-contain"
       />
     </div>
     // <div

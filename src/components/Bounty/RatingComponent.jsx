@@ -1,12 +1,44 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { useModal } from "../ModalContext";
 
-const RatingComponent = ({ value }) => {
+const RatingComponent = ({ value, id }) => {
+  console.log(value);
+
   const [rating, setRating] = useState(value > 0 ? value : 0);
 
-  const handleRatingChange = (rating) => {
+  const { openModal } = useModal();
+
+  const handleRatingChange = async (rating) => {
     setRating(rating);
+    await rateBounty(id, rating);
   };
+
+  async function rateBounty(id, rating) {
+    try {
+      const formData = new FormData();
+      formData.append("bounty_id", id);
+      formData.append("rating", rating);
+
+      const response = await fetch(`/api/bounty-rate`, {
+        method: "POST",
+        body: formData,
+        cache: "no-store",
+      });
+
+      if (response.ok) {
+        openModal("Rated!");
+        return true;
+      }
+      const error = await response.json();
+      openModal(error.message);
+      console.error(error);
+      return false;
+    } catch (error) {
+      console.error("Error:", error);
+      return false;
+    }
+  }
 
   return (
     <div className="flex items-center">

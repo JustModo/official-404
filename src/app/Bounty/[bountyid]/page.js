@@ -39,7 +39,7 @@ export default async function page({ params }) {
       <div className="flex flex-col md:flex-row gap-5 pb-4 justify-between items-baseline">
         <div className="flex flex-row gap-2 font-bold text-white items-center">
           <label>Rate it:</label>
-          <RatingComponent value={data?.users_rating} />
+          <RatingComponent value={data?.users_rating} id={params.bountyid} />
         </div>
         <div className="flex flex-row gap-5">
           <AddSolBtn id={params.bountyid} />
@@ -58,6 +58,7 @@ async function getBounty(id) {
       method: "POST",
       body: formData,
       next: { revalidate: 60 },
+      // cache: "no-store",
     });
 
     if (response.ok) {

@@ -8,6 +8,15 @@ export async function middleware(req) {
     return NextResponse.redirect(new URL("/Auth/Login", req.url));
   }
 
+  if (req.nextUrl.pathname === "/Bounty/CreateBounty" && !isLoggedIn) {
+    return NextResponse.redirect(new URL("/Auth/Login", req.url));
+  }
+
+  const bountyAddSolutionPattern = /^\/Bounty\/[^/]+\/AddSolution$/;
+  if (bountyAddSolutionPattern.test(req.nextUrl.pathname) && !isLoggedIn) {
+    return NextResponse.redirect(new URL("/Auth/Login", req.url));
+  }
+
   if (req.nextUrl.pathname.startsWith("/Auth") && isLoggedIn) {
     return NextResponse.redirect(new URL("/Profile", req.url));
   }
@@ -16,7 +25,12 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/Profile", "/Auth/:path*"],
+  matcher: [
+    "/Profile",
+    "/Auth/:path*",
+    "/Bounty/CreateBounty",
+    "/Bounty/:path*/AddSolution",
+  ],
 };
 
 async function checkAuth(headers) {
@@ -32,7 +46,8 @@ async function checkAuth(headers) {
       return true;
     }
     const error = await response.text();
-    console.error(error);
+    // console.error(error);
+    console.error("Denied");
     return false;
   } catch (error) {
     console.error("Error checking authentication:", error);

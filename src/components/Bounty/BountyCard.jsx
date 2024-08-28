@@ -20,15 +20,13 @@ export default function BountyCard({ data, onClick, layoutId }) {
         className="bg-neutral w-full relative py-6 px-4 rounded-xl"
         layout
       >
-        <motion.h1 layout>
+        <motion.div layout>
           {data?.average_rating > 0 ? (
             <StarRating rating={data?.average_rating} id={data?.id} />
           ) : (
-            <h1 style={{ lineHeight: 1 }}>
-              Not Rated
-            </h1>
+            <h1 style={{ lineHeight: 1 }}>Not Rated</h1>
           )}
-        </motion.h1>
+        </motion.div>
         <motion.h1
           className="text-xl font-bold mt-5"
           style={{ lineHeight: "1.6rem" }}
